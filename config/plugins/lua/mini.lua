@@ -71,3 +71,6 @@ vim.api.nvim_create_autocmd("User", {
         map_split(buf_id, "<C-v>", "belowright vertical")
     end,
 })
+
+-- Mini Pick
+vim.ui.select = require("mini.pick").ui_select

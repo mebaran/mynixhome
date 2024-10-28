@@ -165,4 +165,63 @@
     };
     luaConfig.post = builtins.readFile ./lua/mini.lua;
   };
+  keymaps = let
+      pick = p: {
+        __raw = "require('mini.pick').${p}";
+      };
+      extra = p: {
+        __raw = "require('mini.extra').${p}";
+      };
+    in [
+      {
+        key = "<leader>ff";
+        action = pick "builtin.files";
+        options.desc = "Pick files";
+      }
+      {
+        key = "<leader>bb";
+        action = pick "builtin.buffers";
+        options.desc = "Pick buffers";
+      }
+      {
+        key = "<leader>sg";
+        action = pick "builtin.grep_live";
+        options.desc = "Pick by grep (live)";
+      }
+      {
+        key = "<leader>\"";
+        action = extra "pickers.registers";
+        options.desc = "Pick registers";
+      }
+      {
+        key = "<leader>sl";
+        action = extra "pickers.lsp";
+        options.desc = "Pick LSP symbols";
+      }
+      {
+        key = "<leader>sk";
+        action = extra "pickers.keymaps";
+        options.desc = "Pick keymaps";
+      }
+      {
+        key = "<leader>fo";
+        action = extra "pickers.oldfiles";
+        options.desc = "Pick oldfiles";
+      }
+      {
+        key = "<leader>sc";
+        action = extra "pickers.treesitter";
+        options.desc = "Pick code (nodes)";
+      }
+      {
+        key = "<leader>sc";
+        action = "lua ${(extra ''pickers.history({ scope = ":" })'').__raw}";
+        options.desc = "Pick command (history)";
+      }
+      {
+        key = "<leader>s/";
+        action = "lua ${(extra ''pickers.history({ scope = "/" })'').__raw}";
+        options.desc = "Pick command (search)";
+      }
+    ];
 }
