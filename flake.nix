@@ -41,6 +41,8 @@
           packages = {
             # Lets you run `nix run .` to start nixvim
             default = nvim;
+            nix = nvim.extend (import ./lang/nix.nix);
+            python = nvim.extend (import ./lang/python.nix);
           };
         };
     };

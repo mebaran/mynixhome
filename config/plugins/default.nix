@@ -1,5 +1,8 @@
 {
   imports = [
+    ./autocomplete.nix
+    ./conform.nix
+    ./flash.nix
     ./gitsigns.nix
     ./lualine.nix
     ./mini.nix
@@ -9,5 +12,4 @@
   ];
   plugins.nvim-bqf.enable = true;
   plugins.ts-comments.enable = true;
-  
 }

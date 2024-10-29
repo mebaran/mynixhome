@@ -1,4 +1,14 @@
+{pkgs, ...}:
 {
   # Import all your configuration modules here
-  imports = [./options.nix ./keymaps.nix ./plugins];
+  imports = [./editor.nix ./keymaps.nix ./plugins];
+  
+  colorschemes.poimandres.enable = true;
+  
+  extraPackages = with pkgs; [
+    fd
+    fzf
+    git
+    ripgrep
+  ];
 }

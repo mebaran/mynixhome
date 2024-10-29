@@ -34,8 +34,7 @@
 
     {
       key = "[q";
-      action = {
-        __raw = ''
+      action.__raw = ''
           function()
               if require("trouble").is_open() then
                   require("trouble").prev({ skip_groups = true, jump = true })
@@ -47,13 +46,11 @@
               end
           end
         '';
-      };
       options.desc = "Previous Trouble/Quickfix Item";
     }
     {
       key = "]q";
-      action = {
-        __raw = ''
+      action.__raw = ''
           function()
               if require("trouble").is_open() then
                   require("trouble").next({ skip_groups = true, jump = true })
@@ -65,7 +62,6 @@
               end
           end
         '';
-      };
       options.desc = "Next Trouble/Quickfix Item";
     }
   ];

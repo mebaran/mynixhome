@@ -1,4 +1,6 @@
-{
+{ lib, ... }:
+let raw = lib.nixvim.mkRaw;
+in {
   plugins.mini = {
     enable = true;
     mockDevIcons = true;
@@ -20,13 +22,13 @@
             keys = "<Leader>";
           }
 
-          # Built-in completio
+          # Built-in completion
           {
             mode = "i";
             keys = "<C-x>";
           }
 
-          # `g` ke
+          # `g` key
           {
             mode = "n";
             keys = "g";
@@ -110,12 +112,12 @@
           clue = "require('mini.clue')";
         in [
           # Enhance this by adding descriptions for <Leader> mapping groups
-          {__raw = "${clue}.gen_clues.builtin_completion()";}
-          {__raw = "${clue}.gen_clues.g()";}
-          {__raw = "${clue}.gen_clues.marks()";}
-          {__raw = "${clue}.gen_clues.registers()";}
-          {__raw = "${clue}.gen_clues.windows()";}
-          {__raw = "${clue}.gen_clues.z()";}
+          (raw "${clue}.gen_clues.builtin_completion()")
+          (raw "${clue}.gen_clues.g()")
+          (raw "${clue}.gen_clues.marks()")
+          (raw "${clue}.gen_clues.registers()")
+          (raw "${clue}.gen_clues.windows()")
+          (raw "${clue}.gen_clues.z()")
 
           # Submode for quick buffer navigation
           {
@@ -166,12 +168,8 @@
     luaConfig.post = builtins.readFile ./lua/mini.lua;
   };
   keymaps = let
-      pick = p: {
-        __raw = "require('mini.pick').${p}";
-      };
-      extra = p: {
-        __raw = "require('mini.extra').${p}";
-      };
+      pick = p: raw "require('mini.pick').${p}";
+      extra = p: raw "require('mini.extra').${p}";
     in [
       {
         key = "<leader>ff";
@@ -215,12 +213,12 @@
       }
       {
         key = "<leader>sc";
-        action = "lua ${(extra ''pickers.history({ scope = ":" })'').__raw}";
+        action = "<cmd>lua ${(extra ''pickers.history({ scope = ":" })'').__raw}<cr>";
         options.desc = "Pick command (history)";
       }
       {
         key = "<leader>s/";
-        action = "lua ${(extra ''pickers.history({ scope = "/" })'').__raw}";
+        action = "<cmd>lua ${(extra ''pickers.history({ scope = "/" })'').__raw}<cr>";
         options.desc = "Pick command (search)";
       }
     ];
