@@ -32,7 +32,7 @@
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
         in
-        {
+        rec {
           checks = {
             # Run `nix flake check .` to verify that your config is not broken
             default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
@@ -43,6 +43,12 @@
             default = nvim;
             nix = nvim.extend (import ./lang/nix.nix);
             python = nvim.extend (import ./lang/python.nix);
+          };
+
+          devShells.default = pkgs.mkShell {
+            buildInputs = [
+              packages.nix
+            ];
           };
         };
     };

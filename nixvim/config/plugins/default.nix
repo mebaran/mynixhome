@@ -8,8 +8,12 @@
     ./mini.nix
     ./treesitter.nix
     ./trouble.nix
-    # ./yanky.nix
+    ./yanky.nix
   ];
-  plugins.nvim-bqf.enable = true;
-  plugins.ts-comments.enable = true;
+  plugins = {
+    nvim-bqf.enable = true;
+    sqlite-lua.enable = true;
+    ts-comments.enable = true;
+    zen-mode.enable = true;
+  };
 }
