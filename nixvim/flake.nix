@@ -39,7 +39,7 @@
         nvimFlavors = {
           default = nvim;
           nixlang = nvim.extend (import ./lang/nixlang.nix);
-          python = (nvim.extend (import ./lang/dap.nix)).extend (import ./lang/python.nix);
+          python = nvim.extend (import ./lang/python.nix);
         };
       in rec {
         checks = {

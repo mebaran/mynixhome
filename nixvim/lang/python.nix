@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  imports = [./dap.nix];
   plugins = {
     lsp.enable = true;
     lsp.servers.basedpyright.enable = true;
