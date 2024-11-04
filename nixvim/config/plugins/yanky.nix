@@ -8,6 +8,12 @@
   };
   keymaps = [
     {
+      key = "<leader>y";
+      action = "YankRingHistory";
+      mode = ["n" "x"];
+      options.desc = "Show Yank history";
+    }
+    {
       key = "y";
       action = "<Plug>(YankyYank)";
       mode = ["n" "x"];

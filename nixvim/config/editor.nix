@@ -41,7 +41,6 @@ in {
     writebackup = false;
     updatetime = 250;
 
-    shell = "zsh --login"; #better fpath
   };
   diagnostics = {
     virtual_text = false;

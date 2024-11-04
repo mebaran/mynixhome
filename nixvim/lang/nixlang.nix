@@ -10,7 +10,7 @@
       settings.formatters_by_ft.nix = ["alejandra"];
     };
   };
-  extraPackages = [
-    pkgs.alejandra
+  extraPackages = with pkgs; [
+    alejandra
   ];
 }
