@@ -2,7 +2,7 @@
   plugins.lsp.enable = true;
   autoCmd = [
     {
-      description = "LSP configuration autocommand";
+      desc = "Personal LSP configuration autocommand";
       event = "LspAttach";
       callback.__raw = ''
         function(ev)

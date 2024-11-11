@@ -5,6 +5,7 @@
     ./flash.nix
     ./gitsigns.nix
     ./lualine.nix
+    ./lsp.nix
     ./mini.nix
     ./treesitter.nix
     ./trouble.nix
