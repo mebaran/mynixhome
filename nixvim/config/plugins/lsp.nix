@@ -2,6 +2,7 @@
   plugins.lsp.enable = true;
   autoCmd = [
     {
+      description = "LSP configuration autocommand";
       event = "LspAttach";
       callback.__raw = ''
         function(ev)
@@ -30,6 +31,7 @@
                 map("n", "<leader>ca", vim.lsp.buf.code_action, opts_desc("Code action"))
                 map({ "n", "v" }, "<leader>=", vim.lsp.buf.format, opts_desc("Code format"))
             end
+            print("Configuring LSP keymaps...")
             lsp_callback(ev.buf)
         end
       '';

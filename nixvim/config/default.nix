@@ -11,4 +11,8 @@
     git
     ripgrep
   ];
+
+  extraPlugins = with pkgs.vimPlugins; [
+    nvim-unception
+  ];
 }
