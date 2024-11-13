@@ -40,34 +40,33 @@ in {
     swapfile = false;
     writebackup = false;
     updatetime = 250;
-
   };
   diagnostics = {
     virtual_text = false;
     underline = true;
     severity_sort = true;
   };
-  
+
   # Term improvements
   autoCmd = [
     {
-        event = "TermOpen";
-        callback.__raw = ''
-            function(event)
-                vim.cmd("setlocal nonumber")
-                vim.cmd("setlocal norelativenumber")
-                vim.cmd("setlocal signcolumn=yes:1")
-                -- vim.cmd('startinsert!')
-                vim.cmd("set cmdheight=1")
-                -- vim.bo[event.buf].buflisted = false
-                vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-            end
-        '';
+      event = "TermOpen";
+      callback.__raw = ''
+        function(event)
+            vim.cmd("setlocal nonumber")
+            vim.cmd("setlocal norelativenumber")
+            vim.cmd("setlocal signcolumn=yes:1")
+            -- vim.cmd('startinsert!')
+            vim.cmd("set cmdheight=1")
+            -- vim.bo[event.buf].buflisted = false
+            vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+        end
+      '';
     }
     {
-        event = "WinEnter";
-        pattern = "term://*";
-        command = "startinsert!";
+      event = "WinEnter";
+      pattern = "term://*";
+      command = "startinsert!";
     }
   ];
 }

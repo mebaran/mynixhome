@@ -16,5 +16,6 @@
     sqlite-lua.enable = true;
     ts-comments.enable = true;
     zen-mode.enable = true;
+    render-markdown.enable = true;
   };
 }
