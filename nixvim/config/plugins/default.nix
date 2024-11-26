@@ -17,5 +17,6 @@
     ts-comments.enable = true;
     zen-mode.enable = true;
     lazygit.enable = true;
+    render-markdown.enable = true;
   };
 }
