@@ -41,7 +41,7 @@
           nixlang = nvim.extend (import ./lang/nixlang.nix);
           python = nvim.extend (import ./lang/python.nix);
         };
-      in rec {
+      in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;

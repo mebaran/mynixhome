@@ -1,6 +1,11 @@
 {
   plugins.lsp.enable = true;
-  autoCmd = [
+  plugins.lspsaga = {
+    enable = true;
+  };
+  autoCmd = let
+    lspsaga = action: ''"<cmd>Lspsaga ${action}<cr>"'';
+  in [
     {
       desc = "Personal LSP configuration autocommand";
       event = "LspAttach";
@@ -15,20 +20,22 @@
                     return { buffer = bufnr, desc = desc }
                 end
                 local map = vim.keymap.set
+                map("n", "gF", ${lspsaga "finder"}, opts_desc("Goto symbol finder"))
                 map("n", "gD", vim.lsp.buf.declaration, opts_desc("Goto declaration"))
                 map("n", "gd", vim.lsp.buf.definition, opts_desc("Goto definition"))
                 map("n", "gI", vim.lsp.buf.implementation, opts_desc("Goto implementation"))
                 map("n", "gr", vim.lsp.buf.references, opts_desc("Goto references"))
-                map("n", "K", vim.lsp.buf.hover, {})
+                map("n", "K", ${lspsaga "hover_doc"}, {})
                 map({ "i", "n" }, "<C-k>", vim.lsp.buf.signature_help, opts_desc("Signature help"))
                 map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts_desc("Add workspace folder"))
                 map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts_desc("Remove workspace folder"))
                 map("n", "<leader>wl", function()
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, opts_desc("Print workspace folders list"))
-                map("n", "<leader>gy", vim.lsp.buf.type_definition, opts_desc("Goto t(y)pe definition"))
+                map("n", "<leader>gd", ${lspsaga "peek_defition"}, opts_desc("Peek definition"))
+                map("n", "<leader>gy", ${lspsaga "peek_type_definition"}, opts_desc("Peek t(y)pe definition"))
                 map("n", "<leader>cr", vim.lsp.buf.rename, opts_desc("Code rename"))
-                map("n", "<leader>ca", vim.lsp.buf.code_action, opts_desc("Code action"))
+                map("n", "<leader>ca", ${lspsaga "code_action"}, opts_desc("Code action"))
                 map({ "n", "v" }, "<leader>=", vim.lsp.buf.format, opts_desc("Code format"))
             end
             print("Configuring LSP keymaps...")
