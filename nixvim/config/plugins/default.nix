@@ -1,7 +1,6 @@
 {
   imports = [
     ./autocomplete.nix
-    ./codecompanion.nix
     ./conform.nix
     ./flash.nix
     ./gitsigns.nix
@@ -20,10 +19,5 @@
     sqlite-lua.enable = true;
     ts-comments.enable = true;
     zen-mode.enable = true;
-  };
-}
-{
-  plugins.codecompanion = {
-    enable = true;
   };
 }
