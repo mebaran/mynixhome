@@ -41,6 +41,13 @@
           nixlang = nvim.extend (import ./lang/nixlang.nix);
           python = nvim.extend (import ./lang/python.nix);
         };
+        devTools = with pkgs; [
+          aider-chat
+          fd
+          git
+          lazygit
+          ripgrep
+        ];
       in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
@@ -50,7 +57,7 @@
         packages = nvimFlavors;
 
         devShells = with pkgs; builtins.mapAttrs
-                        (a: v: mkShell { buildInputs = [v]; })
+                        (a: v: mkShell { buildInputs = devTools ++ [v]; })
                         nvimFlavors;
       };
     };

@@ -12,11 +12,12 @@
     ./yanky.nix
   ];
   plugins = {
+    diffview.enable = true;
+    lazygit.enable = true;
     nvim-bqf.enable = true;
+    render-markdown.enable = true;
     sqlite-lua.enable = true;
     ts-comments.enable = true;
     zen-mode.enable = true;
-    lazygit.enable = true;
-    render-markdown.enable = true;
   };
 }
