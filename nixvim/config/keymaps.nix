@@ -196,6 +196,12 @@
       action = "<gv";
       options.desc = "Unindent selection";
     }
+    # Set the K mapping to prevent automapping by nvim
+    {
+      mode = "n";
+      key = "K";
+      action = "<Nop>";
+    }
   ];
   autoCmd = [
     {
