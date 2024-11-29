@@ -50,7 +50,7 @@ in {
   # Term improvements
   autoCmd = [
     {
-      event = "TermOpen";
+      event = ["TermOpen" "TermEnter"];
       callback.__raw = ''
         function(event)
             vim.cmd("setlocal nonumber")

@@ -44,4 +44,12 @@
       '';
     }
   ];
+  keymaps = [
+    {
+      mode = "n";
+      key = "<C-;>";
+      action = "<cmd>Lspsaga term_toggle<cr>";
+      options.desc = "Toggle floating terminal";
+    }
+  ];
 }
