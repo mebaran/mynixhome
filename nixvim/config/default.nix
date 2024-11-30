@@ -12,10 +12,6 @@
     ripgrep
   ];
 
-  extraPlugins = with pkgs.vimPlugins; [
-    nvim-unception
-  ];
-
   performance = {
     byteCompileLua = {
       enable = true;
