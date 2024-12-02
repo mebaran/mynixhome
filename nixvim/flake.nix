@@ -34,13 +34,10 @@
           extraSpecialArgs = {
             # inherit (inputs) foo;
           };
-        };
+        }; 
+        
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
-        nvimFlavors = {
-          default = nvim;
-          nixlang = nvim.extend (import ./lang/nixlang.nix);
-          python = nvim.extend (import ./lang/python.nix);
-        };
+        
         devTools = with pkgs; [
           aider-chat
           fd
@@ -48,17 +45,31 @@
           lazygit
           ripgrep
         ];
-      in {
+
+        packs = {
+          nixlang = import ./lang/nixlang.nix;
+          python = import ./lang/python.nix;
+          web = import ./lang/web.nix;
+        };
+        
+      in rec {
+        packages =
+          {
+            default = nvim;
+            _langs = packs;
+          }
+          // builtins.mapAttrs (name: value: nvim.extend value) packs;
+        
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
 
-        packages = nvimFlavors;
 
-        devShells = with pkgs; builtins.mapAttrs
-                        (a: v: mkShell { buildInputs = devTools ++ [v]; })
-                        nvimFlavors;
+        devShells = with pkgs;
+          builtins.mapAttrs
+          (a: v: mkShell {buildInputs = devTools ++ [v];})
+          packages;
       };
     };
 }
