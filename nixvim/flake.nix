@@ -56,7 +56,6 @@
         packages =
           {
             default = nvim;
-            _langs = packs;
           }
           // builtins.mapAttrs (name: value: nvim.extend value) packs;
         
