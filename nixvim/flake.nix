@@ -11,8 +11,25 @@
     nixvim,
     flake-parts,
     ...
-  } @ inputs:
+  } @ inputs: let
+    langs = {
+      nixlang = import ./lang/nixlang.nix;
+      python = import ./lang/python.nix;
+      web = import ./lang/web.nix;
+    };
+    devTools = {pkgs, ...}: with pkgs; [
+      aider-chat
+      fd
+      git
+      lazygit
+      ripgrep
+    ];
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        inherit langs devTools;  
+      };
+
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -34,40 +51,25 @@
           extraSpecialArgs = {
             # inherit (inputs) foo;
           };
-        }; 
-        
-        nvim = nixvim'.makeNixvimWithModule nixvimModule;
-        
-        devTools = with pkgs; [
-          aider-chat
-          fd
-          git
-          lazygit
-          ripgrep
-        ];
-
-        packs = {
-          nixlang = import ./lang/nixlang.nix;
-          python = import ./lang/python.nix;
-          web = import ./lang/web.nix;
         };
-        
+
+        nvim = nixvim'.makeNixvimWithModule nixvimModule;
+
       in rec {
         packages =
           {
             default = nvim;
           }
-          // builtins.mapAttrs (name: value: nvim.extend value) packs;
-        
+          // builtins.mapAttrs (name: value: nvim.extend value) langs;
+
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
 
-
         devShells = with pkgs;
           builtins.mapAttrs
-          (a: v: mkShell {buildInputs = devTools ++ [v];})
+          (a: v: mkShell {buildInputs = (devTools pkgs) ++ [v];})
           packages;
       };
     };
