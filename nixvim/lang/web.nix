@@ -3,8 +3,8 @@
     lsp.enable = true;
     lsp.servers = {
       emmet_language_server.enable = true;
-      htmx_lsp.enable = true;
-      html_lsp.enable = true;
+      htmx.enable = true;
+      html.enable = true;
     };
     conform-nvim.settings.formatters_by_ft = {
       css = ["prettierd"];
