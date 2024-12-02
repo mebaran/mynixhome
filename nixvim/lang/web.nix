@@ -2,8 +2,9 @@
   plugins = {
     lsp.enable = true;
     lsp.servers = {
-      emmet-language-server.enable = true;
-      htmx-lsp.enable = true;
+      emmet_language_server.enable = true;
+      htmx_lsp.enable = true;
+      html_lsp.enable = true;
     };
     conform-nvim.settings.formatters_by_ft = {
       css = ["prettierd"];
