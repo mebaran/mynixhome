@@ -18,7 +18,6 @@
       web = import ./lang/web.nix;
     };
     devTools = {pkgs, ...}: with pkgs; [
-      aider-chat
       fd
       git
       lazygit
