@@ -1,19 +1,13 @@
-{pkgs ? import <nixpkgs>, ...}: {
-  extraPlugins = with pkgs.vimPlugins; [
-    codecompanion-nvim
-  ];
-  extraConfigLua = ''
-    require("codecompanion").setup({
+{
+  plugins.codecompanion = {
+    enable = true;
+    settings = {
       strategies = {
-        chat = {
-          adapter = "anthropic",
-        },
-        inline = {
-          adapter = "anthropic",
-        },
-      },
-    })
-  '';
+        chat.adapter = "anthropic";
+        inline.adapter = "anthropic";
+      };
+    };
+  };
   keymaps = [
     {
       mode = ["n" "v"];
