@@ -1,13 +1,18 @@
 {
-    plugins = {
-        luasnip.enable = true;
-        friendly-snippets.enable = true;
-        cmp_luasnip.enable = true;
-        cmp-nvim-lsp.enable = true;
-        cmp-path.enable = true;
-        cmp = {
-            enable = true;
-            luaConfig.pre = builtins.readFile ./lua/cmp.lua; 
+  plugins = {
+    friendly-snippets.enable = true;
+    blink-cmp = {
+      enable = true;
+      settings = {
+        trigger.signature_help.enabled = true;
+        highlight = {
+          use_nvim_cmp_as_default = true;
         };
+        list.selection = "auto_insert";
+        keymap = {
+          preset = "enter";
+        };
+      };
     };
+  };
 }
