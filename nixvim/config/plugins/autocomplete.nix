@@ -4,7 +4,7 @@
     blink-cmp = {
       enable = true;
       settings = {
-        trigger.signature_help.enabled = true;
+        signature_help.enabled = true;
         highlight = {
           use_nvim_cmp_as_default = true;
         };
