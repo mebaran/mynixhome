@@ -4,7 +4,6 @@
     blink-cmp = {
       enable = true;
       settings = {
-        sources.default = ["lsp"];
         signature.enabled = true;
         highlight.use_nvim_cmp_as_default = true;
         list.selection = "auto_insert";

@@ -1,13 +1,14 @@
 {
-  plugins.lsp.enable = true;
-  plugins.lspsaga = {
+  plugins.lsp = {
     enable = true;
+    capabilities = "require('blink.cmp').get_lsp_capabilities()";
   };
+  plugins.lspsaga.enable = true;
   autoCmd = let
     lspsaga = action: ''"<cmd>Lspsaga ${action}<cr>"'';
   in [
     {
-      desc = "Personal LSP configuration autocommand";
+      desc = "Configure LSP keymaps and omnifunc";
       event = "LspAttach";
       callback.__raw = ''
         function(ev)

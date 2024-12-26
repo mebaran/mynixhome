@@ -15,5 +15,8 @@
   };
   extraPackages = with pkgs; [
     prettierd
+    nodejs
+    typescript
+    nodePackages.npm
   ];
 }
