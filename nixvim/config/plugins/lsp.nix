@@ -38,7 +38,6 @@
                 map("n", "<leader>ca", ${lspsaga "code_action"}, opts_desc("Code action"))
                 map({ "n", "v" }, "<leader>=", vim.lsp.buf.format, opts_desc("Code format"))
             end
-            print("Configuring LSP keymaps...")
             lsp_callback(ev.buf)
         end
       '';

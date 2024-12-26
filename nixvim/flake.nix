@@ -17,16 +17,10 @@
       python = import ./lang/python.nix;
       web = import ./lang/web.nix;
     };
-    devTools = {pkgs, ...}: with pkgs; [
-      fd
-      git
-      lazygit
-      ripgrep
-    ];
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
-        inherit langs devTools;  
+        inherit langs;  
       };
 
       systems = [
@@ -47,9 +41,7 @@
           inherit pkgs;
           module = import ./config; # import the module directly
         };
-
         nvim = nixvim'.makeNixvimWithModule nixvimModule;
-
       in rec {
         packages =
           {
@@ -64,7 +56,7 @@
 
         devShells = with pkgs;
           builtins.mapAttrs
-          (a: v: mkShell {buildInputs = (devTools pkgs) ++ [v];})
+          (a: v: mkShell {buildInputs = [v];})
           packages;
       };
     };
