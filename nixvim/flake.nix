@@ -16,6 +16,7 @@
       nixlang = import ./lang/nixlang.nix;
       python = import ./lang/python.nix;
       web = import ./lang/web.nix;
+      sql = import ./lang/sql.nix;
     };
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
