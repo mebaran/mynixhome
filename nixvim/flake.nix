@@ -34,6 +34,7 @@
       perSystem = {
         pkgs,
         system,
+        lib,
         ...
       }: let
         nixvimLib = nixvim.lib.${system};
@@ -48,7 +49,10 @@
           {
             default = nvim;
           }
-          // builtins.mapAttrs (name: value: nvim.extend value) langs;
+          // lib.mapAttrs (name: value: nvim.extend value) langs
+          // { 
+            all = lib.foldr (n: l: n.extend l) nvim [];
+          };
 
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
