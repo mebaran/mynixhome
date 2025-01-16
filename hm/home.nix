@@ -12,6 +12,11 @@
     mynixvim.packages.${system}.default
   ];
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    USQL_PAGER = "pspg";
+  };
+
   imports = [
     ./packages.nix
     ./programs.nix

@@ -26,10 +26,22 @@
     enableZshIntegration = true;
   };
 
+  programs.lesspipe = {
+    enable = true;
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.fd = {
+    enable = true;
+  };
+
+  programs.ripgrep = {
+    enable = true;
   };
 
   programs.eza = {
@@ -70,6 +82,10 @@
       ".direnv/"
       ".envrc"
     ];
+  };
+
+  programs.lazygit = {
+    enable = true;
   };
 
   programs.ssh = {

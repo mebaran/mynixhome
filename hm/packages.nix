@@ -15,9 +15,7 @@
 
     # utils
     bat
-    fd
     jq # A lightweight and flexible command-line JSON processor
-    ripgrep # recursively searches directories for a regex pattern
     yq-go # yaml processor https://github.com/mikefarah/yq
 
     # networking tools
@@ -32,11 +30,11 @@
     #sql
     pspg
     pgcli
+    psql
     usql
 
     # misc
     age
-    cowsay
     file
     gawk
     gnupg
