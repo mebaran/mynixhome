@@ -15,7 +15,7 @@
 
     # utils
     bat
-    eza # A modern replacement for ‘ls’
+    fd
     jq # A lightweight and flexible command-line JSON processor
     ripgrep # recursively searches directories for a regex pattern
     yq-go # yaml processor https://github.com/mikefarah/yq
@@ -56,13 +56,6 @@
     glow # markdown previewer in terminal
 
     btop # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
-
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
   ];
 
 }

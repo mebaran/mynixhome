@@ -5,7 +5,7 @@
     enableVteIntegration = true;
     history = {
       ignoreAllDups = true;
-      ignoreSpce = true;
+      ignoreSpace = true;
     };
   };
   
@@ -15,35 +15,56 @@
   ];
   programs.zsh.enableCompletion = false;
   programs.zsh.initExtra = ''
-    source ${pkgs.zsh-autocomplete}/zsh-autocomplete.plugin.zsh
+    source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
     zstyle ':autocomplete:*' min-input 999
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
   '';
 
-  # direnv setup
+  programs.dircolors = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 
-  programs.zoxide = {
+  programs.eza = {
     enable = true;
-    options = [
-      "--cmd j"
-    ];
+    enableZshIntegration = true;
+    colors = "auto";
   };
-
+  
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };
 
+  programs.zoxide = {
+    enable = true;
+    options = [
+      "--cmd d"
+    ];
+  };
+
+  programs.z-lua = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [
+      "enhanced"
+    ];
+  };
+  programs.zsh.shellAliases = {
+    j = "z";
+  };
+
   programs.git = {
     enable = true;
     userName = "mebaran";
-    email = "mebaran@gmail.com";
+    userEmail = "mebaran@gmail.com";
     delta.enable = true;
     ignores = [
       ".direnv/"
@@ -53,7 +74,7 @@
 
   programs.ssh = {
     enable = true;
-    addKeysToAgent = true;
+    addKeysToAgent = "yes";
   };
 
   programs.keychain = {
