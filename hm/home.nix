@@ -15,5 +15,6 @@
   imports = [
     ./packages.nix
     ./programs.nix
+    ./files.nix
   ];
 }
