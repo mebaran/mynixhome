@@ -22,6 +22,7 @@
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
+    export AGKOZAK_BLANK_LINES=1 
     fpath += (${pkgs.agkozak-zsh-prompt})
     autoload promptinit; promptinit
     prompt agkozak-zsh-prompt
