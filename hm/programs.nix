@@ -8,6 +8,16 @@
       ignoreAllDups = true;
       ignoreSpace = true;
     };
+    plugins = with pkgs; [
+      {
+        name = "zsh-autocomplete";
+        src = pkgs.zsh-autocomplete;
+      }
+      {
+        name = "agkozak-zsh-prompt";
+        src = pkgs.agkozak-zsh-prompt;
+      }
+    ];
   };
   
   # setup zsh autocomplete plugin
@@ -23,7 +33,6 @@
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
     export AGKOZAK_BLANK_LINES=1 
-    fpath += (${pkgs.agkozak-zsh-prompt})
     autoload promptinit; promptinit
     prompt agkozak-zsh-prompt
   '';

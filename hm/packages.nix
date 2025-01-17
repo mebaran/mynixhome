@@ -5,7 +5,6 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     neofetch
-    nnn # terminal file manager
 
     # archives
     zip
