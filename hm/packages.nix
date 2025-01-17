@@ -30,7 +30,6 @@
     #sql
     pspg
     pgcli
-    psql
     usql
 
     # misc

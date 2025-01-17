@@ -3,6 +3,7 @@
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
+    enableSyntaxHighlighting = true;
     history = {
       ignoreAllDups = true;
       ignoreSpace = true;
@@ -12,6 +13,7 @@
   # setup zsh autocomplete plugin
   home.packages = with pkgs; [
     zsh-autocomplete
+    agkozak-zsh-prompt
   ];
   programs.zsh.enableCompletion = false;
   programs.zsh.initExtra = ''
@@ -19,6 +21,10 @@
     zstyle ':autocomplete:*' min-input 999
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+    fpath += (${pkgs.agkozak-zsh-prompt})
+    autoload promptinit; promptinit
+    prompt agkozak-zsh-prompt
   '';
 
   programs.dircolors = {
