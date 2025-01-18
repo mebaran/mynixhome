@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mynixvim = {
-      url = "github:mebaran/flakes?dir=nixvim";
+      url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

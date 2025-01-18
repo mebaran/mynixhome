@@ -3,6 +3,7 @@
     "devshell": {
       "inputs": {
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -56,6 +57,7 @@
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -95,11 +97,13 @@
     "git-hooks": {
       "inputs": {
         "flake-compat": [
+          "mynixvim",
           "nixvim",
           "flake-compat"
         ],
         "gitignore": "gitignore",
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -121,6 +125,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "git-hooks",
           "nixpkgs"
@@ -143,6 +148,27 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737221749,
+        "narHash": "sha256-igllW0yG+UbetvhT11jnt9RppSHXYgMykYhZJeqfHs0=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "97d7946b5e107dd03cc82f21165251d4e0159655",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -164,11 +190,13 @@
     "ixx": {
       "inputs": {
         "flake-utils": [
+          "mynixvim",
           "nixvim",
           "nuschtosSearch",
           "flake-utils"
         ],
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nuschtosSearch",
           "nixpkgs"
@@ -189,9 +217,32 @@
         "type": "github"
       }
     },
+    "mynixvim": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixvim": "nixvim"
+      },
+      "locked": {
+        "lastModified": 1737225778,
+        "narHash": "sha256-fGf5F3pQ0lqLNz8Ac70wEN7AlSCcEHdzBfRhTwU3Rnw=",
+        "owner": "mebaran",
+        "repo": "mynixvim",
+        "rev": "1976189fae16ffb44ebc3aac5883648c4f95b32b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mebaran",
+        "repo": "mynixvim",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -212,15 +263,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736798957,
-        "narHash": "sha256-qwpCtZhSsSNQtK4xYGzMiyEDhkNzOCz/Vfu4oL2ETsQ=",
-        "owner": "nixos",
+        "lastModified": 1736344531,
+        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9abb87b552b7f55ac8916b6fc9e5cb486656a2f3",
+        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -240,15 +291,15 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1736344531,
-        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
-        "owner": "NixOS",
+        "lastModified": 1737062831,
+        "narHash": "sha256-Tbk1MZbtV2s5aG+iM99U8FqwxU/YNArMcWAv6clcsBc=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+        "rev": "5df43628fdf08d642be8ba5b3625a6c70731c19c",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -260,9 +311,9 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts_2",
         "git-hooks": "git-hooks",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nuschtosSearch": "nuschtosSearch",
         "treefmt-nix": "treefmt-nix"
       },
@@ -285,6 +336,7 @@
         "flake-utils": "flake-utils",
         "ixx": "ixx",
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
@@ -305,9 +357,9 @@
     },
     "root": {
       "inputs": {
-        "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim"
+        "home-manager": "home-manager",
+        "mynixvim": "mynixvim",
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
@@ -328,6 +380,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
+          "mynixvim",
           "nixvim",
           "nixpkgs"
         ]
