@@ -54,11 +54,6 @@
       };
     };
     homeConfigs = lib.concatMapAttrs (k: v: homeMaker v) homes;
-    nixosConfig = lib.nixosSystem {
-      modules = [ 
-        ./configuration.nix
-      ];
-    };
   in
-    homeConfigs // { nixosConfigurations.nixos = nixosConfig; };
+    homeConfigs; 
 }
