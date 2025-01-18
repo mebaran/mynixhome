@@ -20,6 +20,7 @@
     mynixvim,
     ...
   }: let
+    lib = nixpkgs.lib;
     homes = {
       linux = rec {
         system = "x86_64-linux";
@@ -37,7 +38,7 @@
       username,
       homeDirectory,
     }: {
-      defaultPackage.${system} = home-manager.defaultPackage.${system};
+      packages.${system}.default = home-manager.packages.${system}.default;
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         # Specify your home configuration modules here, for example,
@@ -52,6 +53,12 @@
         };
       };
     };
+    homeConfigs = lib.concatMapAttrs (k: v: homeMaker v) homes;
+    nixosConfig = lib.nixosSystem {
+      modules = [ 
+        ./configuration.nix
+      ];
+    };
   in
-    nixpkgs.lib.concatMapAttrs (k: v: homeMaker v) homes;
+    homeConfigs // { nixosConfigurations.nixos = nixosConfig; };
 }

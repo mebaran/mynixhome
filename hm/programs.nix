@@ -3,12 +3,11 @@
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
-    enableSyntaxHighlighting = true;
     history = {
       ignoreAllDups = true;
       ignoreSpace = true;
     };
-    plugins = with pkgs; [
+    plugins = [
       {
         name = "zsh-autocomplete";
         src = pkgs.zsh-autocomplete;
@@ -18,6 +17,7 @@
         src = pkgs.agkozak-zsh-prompt;
       }
     ];
+    syntaxHighlighting.enable = true;
   };
   
   # setup zsh autocomplete plugin
