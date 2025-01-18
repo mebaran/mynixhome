@@ -20,23 +20,38 @@
     mynixvim,
     ...
   }: let
-    system = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    defaultPackage.${system} = home-manager.defaultPackage.${system};
-    homeConfigurations."markbaran" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [
-          ./home.nix
-      ];
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-      extraSpecialArgs = {
-        inherit mynixvim system;
+    homes = {
+      linux = rec {
+        system = "x86_64-linux";
+        username = "mebaran";
+        homeDirectory = "/home/${username}";
+      };
+      mac = rec {
+        system = "aarch64-darwin";
+        username = "markbaran";
+        homeDirectory = "/Users/${username}";
       };
     };
-  };
+    homeMaker = {
+      system,
+      username,
+      homeDirectory,
+    }: {
+      defaultPackage.${system} = home-manager.defaultPackage.${system};
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          ./home.nix
+        ];
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+        extraSpecialArgs = {
+          inherit mynixvim system username homeDirectory;
+        };
+      };
+    };
+  in
+    nixpkgs.lib.concatMapAttrs (k: v: homeMaker v) homes;
 }

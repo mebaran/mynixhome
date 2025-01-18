@@ -1,10 +1,13 @@
 {
   mynixvim,
   system,
+  username,
+  homeDirectory,
   ...
 }: {
-  home.username = "markbaran";
-  home.homeDirectory = "/Users/markbaran";
+  home = {
+    inherit username homeDirectory;
+  };
   programs.home-manager.enable = true;
   home.stateVersion = "24.11";
 
