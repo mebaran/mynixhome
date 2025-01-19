@@ -53,7 +53,7 @@
         };
       };
     };
-    homeConfigs = lib.concatMapAttrs (k: v: homeMaker v) homes;
+    homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
-    homeConfigs; 
+    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs); 
 }
