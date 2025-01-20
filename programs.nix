@@ -1,5 +1,4 @@
-{ pkgs, ...}:
-{
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
@@ -19,7 +18,7 @@
     ];
     syntaxHighlighting.enable = true;
   };
-  
+
   # setup zsh autocomplete plugin
   home.packages = with pkgs; [
     zsh-autocomplete
@@ -32,11 +31,27 @@
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
-    export AGKOZAK_BLANK_LINES=1 
+    export AGKOZAK_BLANK_LINES=1
     autoload promptinit; promptinit
     prompt agkozak-zsh-prompt
   '';
-
+  programs.zoxide = {
+    enable = true;
+    options = [
+      "--cmd d"
+    ];
+  };
+  programs.z-lua = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [
+      "enhanced"
+    ];
+  };
+  programs.zsh.shellAliases = {
+    j = "z";
+  };
+  
   programs.dircolors = {
     enable = true;
     enableZshIntegration = true;
@@ -65,28 +80,10 @@
     enableZshIntegration = true;
     colors = "auto";
   };
-  
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    options = [
-      "--cmd d"
-    ];
-  };
-
-  programs.z-lua = {
-    enable = true;
-    enableZshIntegration = true;
-    options = [
-      "enhanced"
-    ];
-  };
-  programs.zsh.shellAliases = {
-    j = "z";
   };
 
   programs.git = {
@@ -115,5 +112,10 @@
     agents = [
       "ssh"
     ];
+  };
+
+  programs.nix-your-shell = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
