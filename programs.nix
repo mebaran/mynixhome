@@ -6,31 +6,28 @@
       ignoreAllDups = true;
       ignoreSpace = true;
     };
-    plugins = [
+    plugins = with pkgs; [
       {
         name = "zsh-autocomplete";
-        src = pkgs.zsh-autocomplete;
+        src = "${zsh-autocomplete}/share/zsh-autocomplete";
       }
       {
         name = "agkozak-zsh-prompt";
-        src = pkgs.agkozak-zsh-prompt;
+        src = "${agkozak-zsh-prompt}/share/zsh/site-functions";
       }
     ];
     syntaxHighlighting.enable = true;
   };
 
   # setup zsh autocomplete plugin
-  home.packages = with pkgs; [
-    zsh-autocomplete
-    agkozak-zsh-prompt
-  ];
   programs.zsh.enableCompletion = false;
   programs.zsh.initExtra = ''
-    source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+    # ZSH Autcomplete Config
     zstyle ':autocomplete:*' min-input 999
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
+    # AGKOZAK Config
     export AGKOZAK_BLANK_LINES=1
     autoload promptinit; promptinit
     prompt agkozak-zsh-prompt
