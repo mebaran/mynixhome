@@ -22,7 +22,7 @@
   # setup zsh autocomplete plugin
   programs.zsh.enableCompletion = false;
   programs.zsh.initExtra = ''
-    # ZSH Autcomplete Config
+    # ZSH Autocomplete Config
     zstyle ':autocomplete:*' min-input 999
     bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
     bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
@@ -78,10 +78,10 @@
     colors = "auto";
   };
 
-  # programs.fzf = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.git = {
     enable = true;
