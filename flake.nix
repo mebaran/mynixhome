@@ -52,6 +52,9 @@
           inherit mynixvim system username homeDirectory;
         };
       };
+      devShells.${system}.default = nixpkgs.mkShell {
+        buildInputs = [ mynixvim.packages.${system}.nixlang ];
+      };
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
