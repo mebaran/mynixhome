@@ -78,10 +78,10 @@
     colors = "auto";
   };
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # programs.fzf = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.git = {
     enable = true;
@@ -109,6 +109,7 @@
     agents = [
       "ssh"
     ];
+    keys = [];
   };
 
   programs.nix-your-shell = {
