@@ -30,6 +30,8 @@
     pspg
     pgcli
     usql
+    sqlite
+    postgresql
 
     # misc
     age

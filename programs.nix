@@ -3,6 +3,8 @@
     enable = true;
     enableVteIntegration = true;
     history = {
+      extended = true;
+      append = true;
       ignoreAllDups = true;
       ignoreSpace = true;
     };
@@ -47,6 +49,7 @@
   };
   programs.zsh.shellAliases = {
     j = "z";
+    e = "$EDITOR";
   };
   
   programs.dircolors = {
