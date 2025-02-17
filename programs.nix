@@ -1,122 +1,129 @@
 {pkgs, ...}: {
-  programs.zsh = {
-    enable = true;
-    enableVteIntegration = true;
-    history = {
-      extended = true;
-      append = true;
-      ignoreAllDups = true;
-      ignoreSpace = true;
+  programs = {
+    zsh = {
+      enable = true;
+      enableVteIntegration = true;
+      history = {
+        extended = true;
+        append = true;
+        ignoreAllDups = true;
+        ignoreSpace = true;
+      };
+      plugins = with pkgs; [
+        {
+          name = "zsh-autocomplete";
+          src = "${zsh-autocomplete}/share/zsh-autocomplete";
+        }
+        {
+          name = "agkozak-zsh-prompt";
+          src = "${agkozak-zsh-prompt}/share/zsh/site-functions";
+        }
+      ];
+      syntaxHighlighting.enable = true;
     };
-    plugins = with pkgs; [
-      {
-        name = "zsh-autocomplete";
-        src = "${zsh-autocomplete}/share/zsh-autocomplete";
-      }
-      {
-        name = "agkozak-zsh-prompt";
-        src = "${agkozak-zsh-prompt}/share/zsh/site-functions";
-      }
-    ];
-    syntaxHighlighting.enable = true;
-  };
 
-  # setup zsh autocomplete plugin
-  programs.zsh.enableCompletion = false;
-  programs.zsh.initExtra = ''
-    # ZSH Autocomplete Config
-    zstyle ':autocomplete:*' min-input 999
-    bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-    bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+    # setup zsh autocomplete plugin
+    zsh.enableCompletion = false;
+    zsh.initExtra = ''
+      # ZSH Autocomplete Config
+      zstyle ':autocomplete:*' min-input 999
+      bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+      bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
-    # AGKOZAK Config
-    export AGKOZAK_BLANK_LINES=1
-    autoload promptinit; promptinit
-    prompt agkozak-zsh-prompt
-  '';
-  programs.zoxide = {
-    enable = true;
-    options = [
-      "--cmd d"
-    ];
-  };
-  programs.z-lua = {
-    enable = true;
-    enableZshIntegration = true;
-    options = [
-      "enhanced"
-    ];
-  };
-  programs.zsh.shellAliases = {
-    j = "z";
-    e = "$EDITOR";
-  };
-  
-  programs.dircolors = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+      # AGKOZAK Config
+      export AGKOZAK_BLANK_LINES=1
+      autoload promptinit; promptinit
+      prompt agkozak-zsh-prompt
+    '';
+    zoxide = {
+      enable = true;
+      options = [
+        "--cmd d"
+      ];
+    };
+    z-lua = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        "enhanced"
+      ];
+    };
+    zsh.shellAliases = {
+      j = "z";
+      e = "$EDITOR";
+    };
+    zsh.envExtra = ''
+      if [[ -f "$HOME/.zshkeys" ]]; then
+        source "$HOME/.zshkeys"
+      fi
+    '';
 
-  programs.lesspipe = {
-    enable = true;
-  };
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
+    lesspipe = {
+      enable = true;
+    };
 
-  programs.fd = {
-    enable = true;
-  };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  programs.ripgrep = {
-    enable = true;
-  };
+    fd = {
+      enable = true;
+    };
 
-  programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-    colors = "auto";
-  };
+    ripgrep = {
+      enable = true;
+    };
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      colors = "auto";
+    };
 
-  programs.git = {
-    enable = true;
-    userName = "mebaran";
-    userEmail = "mebaran@gmail.com";
-    delta.enable = true;
-    ignores = [
-      ".direnv/"
-      ".envrc"
-    ];
-  };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-  programs.lazygit = {
-    enable = true;
-  };
+    git = {
+      enable = true;
+      userName = "mebaran";
+      userEmail = "mebaran@gmail.com";
+      delta.enable = true;
+      ignores = [
+        ".direnv/"
+        ".envrc"
+      ];
+    };
 
-  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-  };
+    lazygit = {
+      enable = true;
+    };
 
-  programs.keychain = {
-    enable = true;
-    enableZshIntegration = true;
-    agents = [
-      "ssh"
-    ];
-    keys = [];
-  };
+    ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+    };
 
-  programs.nix-your-shell = {
-    enable = true;
-    enableZshIntegration = true;
+    keychain = {
+      enable = true;
+      enableZshIntegration = true;
+      agents = [
+        "ssh"
+      ];
+      keys = [];
+    };
+
+    nix-your-shell = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
