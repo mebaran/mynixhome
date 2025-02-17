@@ -43,6 +43,7 @@
     tree
     which
     zstd
+    watch
 
     # nix related
     #
