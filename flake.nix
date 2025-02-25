@@ -22,7 +22,7 @@
   }: let
     lib = nixpkgs.lib;
     homes = {
-      linux = rec {
+      personal-linux = rec {
         system = "x86_64-linux";
         username = "mebaran";
         homeDirectory = "/home/${username}";
@@ -31,6 +31,11 @@
         system = "aarch64-darwin";
         username = "markbaran";
         homeDirectory = "/Users/${username}";
+      };
+      work-linux = rec {
+        system = "x86_64-linux";
+        username = "mbaran";
+        homeDirectory = "/home/${username}";
       };
     };
     homeMaker = {
