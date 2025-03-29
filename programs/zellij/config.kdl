@@ -1,5 +1,4 @@
 theme "vesper"
-simplified_ui true
 copy_on_select true
 keybinds {
     shared_except "locked" {
