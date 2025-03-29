@@ -1,0 +1,14 @@
+layout { 
+    pane size=2 split_direction="vertical" {
+        pane size="70%" borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+        pane size="30%" borderless=true {
+            plugin location="what-time" {
+                time_format "%H:%M:%S"
+                interval_update "1.0"
+            }
+        }
+    }
+    pane
+}

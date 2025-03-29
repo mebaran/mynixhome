@@ -22,7 +22,9 @@
 
   imports = [
     ./packages.nix
-    ./programs.nix
+    ./programs/programs.nix
+    ./programs/zsh.nix
+    ./programs/zellij/zellij.nix
     ./files.nix
   ];
 }
