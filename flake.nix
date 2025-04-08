@@ -42,10 +42,11 @@
       system,
       username,
       homeDirectory,
-    }: {
+    }: let pkgs = nixpkgs.legacyPackages.${system};
+    in {
       packages.${system}.default = home-manager.packages.${system}.default;
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        inherit pkgs;
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
@@ -57,7 +58,7 @@
           inherit mynixvim system username homeDirectory;
         };
       };
-      devShells.${system}.default = nixpkgs.mkShell {
+      devShells.${system}.default = pkgs.mkShell {
         buildInputs = [ mynixvim.packages.${system}.nixlang ];
       };
     };
