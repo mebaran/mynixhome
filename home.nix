@@ -12,7 +12,7 @@
   home.stateVersion = "24.11";
 
   home.packages = [
-    mynixvim.packages.${system}.default
+    mynixvim.packages.${system}.nixlang
   ];
 
   home.sessionVariables = {
