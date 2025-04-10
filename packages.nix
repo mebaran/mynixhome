@@ -43,6 +43,7 @@
     which
     zstd
     watch
+    yazi
 
     # nix related
     #
