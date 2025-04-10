@@ -77,5 +77,8 @@
       };
     };
 
+    yazi = {
+      enable = true;
+    };
   };
 }

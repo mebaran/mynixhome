@@ -14,6 +14,8 @@
     bat
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
+    poppler-utils
+    watch
 
     # networking tools
     curl
@@ -39,11 +41,10 @@
     gnupg
     gnused
     gnutar
+    imagemagick
     tree
     which
     zstd
-    watch
-    yazi
 
     # nix related
     #
