@@ -79,6 +79,7 @@
 
     yazi = {
       enable = true;
+      enableZshIntegration = true;
     };
   };
 }
