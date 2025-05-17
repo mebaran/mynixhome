@@ -30,7 +30,7 @@
           source "$HOME/.zshkeys"
         fi
       '';
-      initExtra = ''
+      initContent = ''
         # ZSH Autocomplete Config
         zstyle ':autocomplete:*' min-input 999
         bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
