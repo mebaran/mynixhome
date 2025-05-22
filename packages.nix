@@ -1,7 +1,7 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: let
+  py = pkgs.python3;
+  pyPkgs = pkgs.python312Packages;
+in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # archives
@@ -33,6 +33,7 @@
     usql
     sqlite
     postgresql
+    lazysql
 
     # misc
     age
@@ -57,8 +58,14 @@
 
     btop # replacement of htop/nmon
 
-    # coding
-    aider-chat
-  ];
+    # python 
+    py
+    pyPkgs.ipython
 
+    # AI and MCP
+    goose-cli
+    pyPkgs.aider-chat
+    pyPkgs.llm
+    pyPkgs.llm-anthropic
+  ];
 }
