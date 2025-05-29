@@ -57,9 +57,6 @@
     keychain = {
       enable = true;
       enableZshIntegration = true;
-      agents = [
-        "ssh"
-      ];
       keys = [];
     };
 
