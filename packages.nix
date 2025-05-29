@@ -2,6 +2,7 @@
   pyDist = pkgs.python3.withPackages (ps:
     with ps; [
       ipython
+      ipython-sql
       aider-chat
       llm
       llm-anthropic
