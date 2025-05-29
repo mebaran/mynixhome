@@ -1,6 +1,5 @@
 {pkgs, ...}: let
   py = pkgs.python3;
-  pyPkgs = pkgs.python312Packages;
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -64,8 +63,15 @@ in {
 
     # AI and MCP
     goose-cli
-    pyPkgs.aider-chat
-    pyPkgs.llm
-    pyPkgs.llm-anthropic
+    
+    # Python progs 
+    py.withPackages (ps: [
+      aider-chat
+      llm
+      llm-anthropic
+      llm-gemini
+      llm-jq
+      llm-ollama
+    ])
   ];
 }
