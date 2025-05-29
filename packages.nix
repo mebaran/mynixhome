@@ -1,5 +1,14 @@
 {pkgs, ...}: let
-  py = pkgs.python3;
+  pyDist = pkgs.python3.withPackages (ps:
+    with ps; [
+      ipython
+      aider-chat
+      llm
+      llm-anthropic
+      llm-gemini
+      llm-jq
+      llm-ollama
+    ]);
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -57,21 +66,10 @@ in {
 
     btop # replacement of htop/nmon
 
-    # python 
-    py
-    pyPkgs.ipython
-
     # AI and MCP
     goose-cli
-    
-    # Python progs 
-    py.withPackages (ps: [
-      aider-chat
-      llm
-      llm-anthropic
-      llm-gemini
-      llm-jq
-      llm-ollama
-    ])
+
+    # Python progs
+    pyDist
   ];
 }
