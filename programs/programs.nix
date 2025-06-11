@@ -78,5 +78,32 @@
       enable = true;
       enableZshIntegration = true;
     };
+
+    pgcli = {
+      enable = true;
+      settings = {
+        main = {
+          pager = "pspg";
+          multi-line = true;
+        };
+      };
+    };
+    
+    jq = {
+      enable = true;
+      # colors = "some-color-scheme"; # Replace with actual color scheme if desired
+    };
+
+    aria2 = {
+      enable = true;
+    };
+
+    bat = {
+      enable = true;
+    };
+
+    btop = {
+      enable = true;
+    };
   };
 }

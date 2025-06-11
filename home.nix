@@ -17,6 +17,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    UV_PYTHON_DOWNLOADS = "never";
     USQL_PAGER = "pspg";
   };
 

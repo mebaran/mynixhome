@@ -24,8 +24,6 @@ in {
     uv
 
     # utils
-    bat
-    jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
     poppler-utils
     watch
@@ -34,7 +32,6 @@ in {
     curl
     dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
-    aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
     ipcalc # it is a calculator for the IPv4/v6 addresses
@@ -42,21 +39,20 @@ in {
 
     #sql
     pspg
-    pgcli
     usql
     sqlite
     postgresql
     lazysql
 
     # misc
-    age
+    broot
     file
     gawk
     gnupg
     gnused
     gnutar
     imagemagick
-    tree
+    rage
     which
     zstd
 
@@ -68,8 +64,6 @@ in {
 
     # productivity
     glow # markdown previewer in terminal
-
-    btop # replacement of htop/nmon
 
     # AI and MCP
     goose-cli
