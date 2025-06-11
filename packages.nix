@@ -19,6 +19,10 @@ in {
     unzip
     p7zip
 
+    # lang runners
+    nodejs
+    uv
+
     # utils
     bat
     jq # A lightweight and flexible command-line JSON processor
