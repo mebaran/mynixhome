@@ -9,6 +9,7 @@
       llm-gemini
       llm-jq
       llm-ollama
+      llm-openrouter
     ]);
 in {
   # Packages that should be installed to the user profile.
