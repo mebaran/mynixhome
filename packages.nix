@@ -69,6 +69,9 @@ in {
     # AI and MCP
     goose-cli
 
+    # npm
+    nodejs
+
     # Python progs
     pyDist
   ];
