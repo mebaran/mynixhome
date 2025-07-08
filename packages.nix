@@ -67,6 +67,7 @@ in {
     # AI and MCP
     goose-cli
     opencode
+    repomix
 
     # npm
     nodejs
