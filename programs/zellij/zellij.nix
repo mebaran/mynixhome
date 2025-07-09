@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mkZellijWasmPlugin = {
     pname,
     version,
@@ -30,13 +34,18 @@
 in {
   programs.zellij = {
     enable = true;
+    settings = {
+      simplified_ui = true;
+      pane_frames = false;
+      show_startup_tips = false;
+    };
   };
   xdg.configFile."zellij/config.kdl".text = lib.strings.concatLines [
     ''
-    plugins {
-      ${aliasPlugin "forgot" zellij-forgot}
-      ${aliasPlugin "what-time" zellij-what-time}
-    }
+      plugins {
+        ${aliasPlugin "forgot" zellij-forgot}
+        ${aliasPlugin "what-time" zellij-what-time}
+      }
     ''
     (builtins.readFile ./config.kdl)
   ];

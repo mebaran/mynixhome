@@ -65,11 +65,11 @@ in {
     glow # markdown previewer in terminal
 
     # AI and MCP
-    goose-cli
+    gemini-cli
     opencode
     repomix
 
-    # npm
+    # npm and npx
     nodejs
 
     # Python progs

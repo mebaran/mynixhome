@@ -65,15 +65,6 @@
       enableZshIntegration = true;
     };
 
-    zellij = {
-      enable = true;
-      settings = {
-        simplified_ui = true;
-        pane_frames = false;
-        show_startup_tips = false;
-      };
-    };
-
     yazi = {
       enable = true;
       enableZshIntegration = true;

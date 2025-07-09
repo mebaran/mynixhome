@@ -26,6 +26,7 @@
     ./programs/programs.nix
     ./programs/zsh.nix
     ./programs/zellij/zellij.nix
+    ./programs/goose/goose.nix
     ./files.nix
   ];
 }

@@ -13,9 +13,5 @@
       \unset QUIET
     '';
     ".pspgconf".source = ./files/_pspgconf;
-    ".config/goose/" = {
-      source = ./files/goose;
-      recursive = true;
-    };
   };
 }
