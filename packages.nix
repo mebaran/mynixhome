@@ -54,6 +54,7 @@ in {
 
     # AI and MCP
     gemini-cli
+    goose-cli
     opencode
     repomix
 
