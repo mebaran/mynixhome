@@ -49,6 +49,14 @@
       enable = true;
     };
 
+    gh = {
+      enable = true;
+    };
+
+    gh-dash = {
+      enable = true;
+    };
+
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
