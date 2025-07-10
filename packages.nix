@@ -1,14 +1,5 @@
 {pkgs, ...}: let
-  pyDist = pkgs.python3.withPackages (ps:
-    with ps; [
-      ipython
-      llm
-      llm-anthropic
-      llm-gemini
-      llm-jq
-      llm-ollama
-      llm-openrouter
-    ]);
+
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -18,9 +9,6 @@ in {
     unzip
     p7zip
 
-    # lang runners
-    nodejs
-    uv
 
     # utils
     yq-go # yaml processor https://github.com/mikefarah/yq
@@ -70,9 +58,10 @@ in {
     repomix
 
     # npm and npx
+    bun
     nodejs
-
-    # Python progs
-    pyDist
   ];
+  home.sessionVariables = {
+    USQL_PAGER = "pspg";
+  };
 }

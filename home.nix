@@ -17,13 +17,12 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    UV_PYTHON_DOWNLOADS = "never";
-    USQL_PAGER = "pspg";
   };
 
   imports = [
     ./packages.nix
-    ./programs/programs.nix
+    ./programs
+    ./programs/python.nix
     ./programs/zsh.nix
     ./programs/zellij/zellij.nix
     ./programs/goose/goose.nix
