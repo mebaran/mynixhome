@@ -1,5 +1,5 @@
-{pkgs, ...}: let
-
+{pkgs, system, ...}: let
+  goose-pkg = pkgs.callPackage ./goose.nix {inherit pkgs;};
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -8,7 +8,6 @@ in {
     xz
     unzip
     p7zip
-
 
     # utils
     yq-go # yaml processor https://github.com/mikefarah/yq
@@ -54,13 +53,14 @@ in {
 
     # AI and MCP
     gemini-cli
-    goose-cli
-    opencode
     repomix
 
     # npm and npx
     bun
     nodejs
+    
+    # custom packages
+    goose-pkg.${system} #latest goose
   ];
   home.sessionVariables = {
     USQL_PAGER = "pspg";

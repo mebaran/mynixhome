@@ -20,7 +20,7 @@
   };
 
   imports = [
-    ./packages.nix
+    ./packages
     ./programs
     ./programs/python.nix
     ./programs/zsh.nix
