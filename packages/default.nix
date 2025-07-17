@@ -1,5 +1,6 @@
 {pkgs, system, ...}: let
   goose-pkg = pkgs.callPackage ./goose.nix {inherit pkgs;};
+  opencode-pkg = pkgs.callPackage ./opencode.nix {inherit pkgs;};
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -61,6 +62,7 @@ in {
     
     # custom packages
     goose-pkg.${system} #latest goose
+    opencode-pkg.${system} #latest opencode
   ];
   home.sessionVariables = {
     USQL_PAGER = "pspg";
