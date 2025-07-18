@@ -48,17 +48,17 @@
 in {
   x86_64-linux = mkOpencodePackage {
     urlSuffix = "linux-x64";
-    sha256 = "1k156f70ch333l3g02g7k7qg3p5z9n0y0jgpzrqcw2z2f7k1g5yq";
+    sha256 = "sha256-f6pbZRyA/VujXvCONeLhSWccWfH+MpVisclejcYAWLo=";
   };
 
   aarch64-linux = mkOpencodePackage {
     urlSuffix = "linux-arm64";
-    sha256 = "0qcn3jdh369bsm88b2ljmm33h3h3i7dqyysd84j2y9y6f8yqgqyn";
+    sha256 = "sha256-ayf518hC0DqwkaK92GXgeDC/YTHwByrHbfju3Bm93Ss=";
   };
 
   aarch64-darwin = mkOpencodePackage {
     urlSuffix = "darwin-arm64";
-    sha256 = "12f7q3jmyiw9z7z63l29biw2d2c4d2y30q9b6acwy3wz8d1j8prc";
+    sha256 = "sha256-wy+Hb2feHKTDBDG9csoRw7KIYlVA/VAZ4IyOW1PuPoA=";
     isDarwin = true;
   };
 }

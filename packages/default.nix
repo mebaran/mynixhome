@@ -39,6 +39,7 @@ in {
     gnused
     gnutar
     imagemagick
+    psutils
     rage
     which
     zstd
