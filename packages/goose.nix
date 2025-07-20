@@ -6,7 +6,7 @@
   }:
     pkgs.stdenv.mkDerivation rec {
       pname = "goose"; #-${archSuffix}";
-      version = "1.1.1";
+      version = "1.1.3";
 
       src = pkgs.fetchzip {
         url = "https://github.com/block/goose/releases/download/v${version}/goose-${urlSuffix}.tar.bz2";
@@ -50,17 +50,17 @@
 in {
   x86_64-linux = mkGoosePackage {
     urlSuffix = "x86_64-unknown-linux-gnu";
-    sha256 = "1h3x23kjw17cg2y7z4j7hmc22nr9fv7qczgr587q0q15w20fvwl3";
+    sha256 = "sha256-XteaB6uIhx6qgM9hGdu/9oWKhulzLfoKIUIHNPmvmbo=";
   };
 
   aarch64-linux = mkGoosePackage {
     urlSuffix = "aarch64-unknown-linux-gnu";
-    sha256 = "03qzjiasx7qa466acw2sgvn9xc3nq6gaqx75kjgq4s1pb4qw932g";
+    sha256 = "sha256-3oW09N9xdTXR7oDgu7rRqUSJSWvIMXUlVphjliJUV0U=";
   };
 
   aarch64-darwin = mkGoosePackage {
     urlSuffix = "aarch64-apple-darwin";
-    sha256 = "1i3lj6gygmjqr5yzzpbdwzq2m8r1qyy16nb454jags2jh419gsbq";
+    sha256 = "sha256-v5FJ4FOsZecDrnyUSlH6jWW4AqtAtYvr8xFtDrsRyQU=";
     isDarwin = true;
   };
 }

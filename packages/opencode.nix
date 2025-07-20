@@ -6,7 +6,7 @@
   }:
     pkgs.stdenv.mkDerivation rec {
       pname = "opencode";
-      version = "0.3.19";
+      version = "0.3.29";
 
       src = pkgs.fetchzip {
         url = "https://github.com/sst/opencode/releases/download/v${version}/opencode-${urlSuffix}.zip";
@@ -37,17 +37,17 @@
 in {
   x86_64-linux = mkOpencodePackage {
     urlSuffix = "linux-x64";
-    sha256 = "sha256-2fpsVRYRrdkPwBM4XcjVX//VF4nSF8q0FFzljqRsprQ=";
+    sha256 = "sha256-JaGfk+b+u5M0ngEmNaoa29+wCNm7/EOY44e0ujnm66w=";
   };
 
   aarch64-linux = mkOpencodePackage {
     urlSuffix = "linux-arm64";
-    sha256 = "sha256-DKIMvT+fxDu6GNw7XC+cbv8Vxdf3QxA/VXHSzzlK0rg=";
+    sha256 = "sha256-e59E3/Kzz0QCH49ColOCxtK6u9ZMKYEFO1itS8n7VzE=";
   };
 
   aarch64-darwin = mkOpencodePackage {
     urlSuffix = "darwin-arm64";
-    sha256 = "sha256-0Bl1Q99We9u5VRwIE3BYPMPLZg8M7mK1whFV4oU3O7s=";
+    sha256 = "sha256-oX6iJi5DpUsPv4CPrWW5OsGJADOiyyzN7WDMnMeut4A=";
     isDarwin = true;
   };
 }
