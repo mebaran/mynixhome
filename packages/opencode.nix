@@ -37,12 +37,12 @@
 in {
   x86_64-linux = mkOpencodePackage {
     urlSuffix = "linux-x64";
-    sha256 = "sha256-eYMUuf8gqpqTF6/XeQ9sR3NBBhUXfg7pW7o/hJBzCM0=";
+    sha256 = "sha256-OqEfOn6YMfDdez5Pbgtg2NBT7SyXMS4w2W8e3kBJOaU=";
   };
 
   aarch64-linux = mkOpencodePackage {
     urlSuffix = "linux-arm64";
-    sha256 = "sha256-KZO1Gwr1O9ZB5MaSKnDnfFqoi3fJR7EosSLbBJ+LQLo=";
+    sha256 = "sha256-XzNX891noUCT7inn7h8Azh9XxRoaAwwJLSkeA1aVqbo=";
   };
 
   aarch64-darwin = mkOpencodePackage {
