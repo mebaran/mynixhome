@@ -1,0 +1,2 @@
+Use the following command to get updated hashes for Nix pkgs:  
+nix-build -E '((import <nixpkgs> {}).callPackage {NIX_FILE} {}).{SYSTEM}' 2>&1 | grep -A 2 -B 2 "hash mismatch" || echo "No hash mismatch"

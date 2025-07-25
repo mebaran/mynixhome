@@ -1,4 +1,8 @@
-{pkgs, system, ...}: let
+{
+  pkgs,
+  system,
+  ...
+}: let
   goose-pkg = pkgs.callPackage ./goose.nix {inherit pkgs;};
   opencode-pkg = pkgs.callPackage ./opencode.nix {inherit pkgs;};
 in {
@@ -62,7 +66,7 @@ in {
     # npm and npx
     bun
     nodejs
-    
+
     # custom packages
     goose-pkg.${system} #latest goose
     opencode-pkg.${system} #latest opencode
