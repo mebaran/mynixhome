@@ -6,7 +6,7 @@
   }:
     pkgs.stdenv.mkDerivation rec {
       pname = "opencode";
-      version = "0.3.67";
+      version = "0.3.113";
 
       src = pkgs.fetchzip {
         url = "https://github.com/sst/opencode/releases/download/v${version}/opencode-${urlSuffix}.zip";
@@ -27,27 +27,24 @@
         description = "Open-source AI coding agent by SST";
         homepage = "https://github.com/sst/opencode";
         license = licenses.mit; # Assuming MIT, verify from repo
-        platforms =
-          if isDarwin
-          then platforms.darwin
-          else platforms.linux;
+        platforms = platforms.all;
         maintainers = [];
       };
     };
 in {
   x86_64-linux = mkOpencodePackage {
     urlSuffix = "linux-x64";
-    sha256 = "sha256-EeI7xvEf54TQhhOi050YdmSHIfd2bIGdJJXGFTJ6K9w=";
+    sha256 = "sha256-8hL2Jd47l/FG0UuSWymc1HnXtqbRKt2pCtjp3/c/nsA=";
   };
 
   aarch64-linux = mkOpencodePackage {
     urlSuffix = "linux-arm64";
-    sha256 = "sha256-D4Gce7f+An+su3ZQ3RbHKM4llmOd0MdsjVvzvcxV88M=";
+    sha256 = "sha256-g5ABOLquhVmEOIGINOxaxYCyDB72O1uoPms7TbOtwb0=";
   };
 
   aarch64-darwin = mkOpencodePackage {
     urlSuffix = "darwin-arm64";
-    sha256 = "sha256-TDM9nzDcZiutrzh6dK94GqsDb4qim0tXIZz3Z8hvrns=";
+    sha256 = "sha256-O6gm6WH9W+I1/INZwvgF2uvjbwmSQNbdCeNpYUUm8Ic=";
     isDarwin = true;
   };
 }
