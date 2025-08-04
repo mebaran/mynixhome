@@ -115,11 +115,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754306438,
-        "narHash": "sha256-BLFBR23sSgVgTsh2vwVuA2PP2ObMLiC8eGbScA9abFM=",
+        "lastModified": 1754328742,
+        "narHash": "sha256-NvZWFUZUenTeZmwAQxjgLO5IgNyF9qm98TWEWnq97vg=",
         "owner": "mebaran",
         "repo": "mynixoverlays",
-        "rev": "e5d3de7db9f3edd06c6cb395b993472b990c29cc",
+        "rev": "bc451e90fafe2b2756d810c026cf22216246f83b",
         "type": "github"
       },
       "original": {
