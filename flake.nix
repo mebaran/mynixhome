@@ -12,12 +12,17 @@
       url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mynixoverlays = {
+      url = "github:mebaran/mynixoverlays";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     mynixvim,
+    mynixoverlays,
     ...
   }: let
     lib = nixpkgs.lib;
@@ -42,7 +47,10 @@
       system,
       username,
       homeDirectory,
-    }: let pkgs = nixpkgs.legacyPackages.${system};
+    }: let pkgs = import nixpkgs {
+      inherit system;
+      overlays = [ mynixoverlays.overlays.default ];
+    };
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {

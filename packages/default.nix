@@ -2,10 +2,7 @@
   pkgs,
   system,
   ...
-}: let
-  goose-pkg = pkgs.callPackage ./goose.nix {inherit pkgs;};
-  opencode-pkg = pkgs.callPackage ./opencode.nix {inherit pkgs;};
-in {
+}: {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # archives
@@ -60,16 +57,15 @@ in {
     glow # markdown previewer in terminal
 
     # AI and MCP
-    gemini-cli
     repomix
 
     # npm and npx
     bun
     nodejs
 
-    # custom packages
-    goose-pkg.${system} #latest goose
-    opencode-pkg.${system} #latest opencode
+    # from my AI overlay
+    goose-cli
+    opencode
   ];
   home.sessionVariables = {
     USQL_PAGER = "pspg";
