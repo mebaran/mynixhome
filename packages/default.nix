@@ -64,6 +64,7 @@
     nodejs
 
     # from my AI overlay
+    gemini-cli
     goose-cli
     opencode
   ];
