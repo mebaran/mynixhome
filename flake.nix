@@ -11,6 +11,7 @@
     mynixvim = {
       url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.mynixoverlays.follows = "mynixoverlays";
     };
     mynixoverlays = {
       url = "github:mebaran/mynixoverlays";
