@@ -59,7 +59,6 @@
 
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
     };
 
     keychain = {
