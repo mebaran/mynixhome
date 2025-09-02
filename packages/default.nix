@@ -1,6 +1,5 @@
 {
   pkgs,
-  system,
   ...
 }: {
   # Packages that should be installed to the user profile.
@@ -28,9 +27,8 @@
 
     #sql
     pspg
-    usql
-    sqlite
     postgresql
+    sqlite
     lazysql
 
     # misc
