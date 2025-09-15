@@ -65,6 +65,7 @@
     gemini-cli
     goose-cli
     opencode
+    qwen-code
   ];
   home.sessionVariables = {
     USQL_PAGER = "pspg";
