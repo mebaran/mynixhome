@@ -12,6 +12,6 @@
       \pset null ∅
       \unset QUIET
     '';
-    ".pspgconf".source = ./files/_pspgconf;
+    ".pspgconf".source = ./_pspgconf;
   };
 }

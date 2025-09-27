@@ -20,12 +20,8 @@
   };
 
   imports = [
+    ./files
     ./packages
     ./programs
-    ./programs/python.nix
-    ./programs/tmux.nix
-    ./programs/zsh.nix
-    ./programs/zellij/zellij.nix
-    ./files.nix
   ];
 }

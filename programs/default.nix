@@ -1,4 +1,10 @@
 {
+  imports = [
+    ./python.nix
+    ./tmux.nix
+    ./zsh.nix
+    ./zellij
+  ];
   programs = {
     dircolors = {
       enable = true;
