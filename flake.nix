@@ -8,6 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mynixvim = {
       url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,54 +30,63 @@
     home-manager,
     mynixvim,
     mynixoverlays,
+    niri,
     ...
   }: let
+    cliModules = [
+      ./home.nix
+    ];
+    desktopModules =
+      [
+        niri.homeModules.niri
+        # niri.homeModules.stylix
+        ./desktop
+      ]
+      ++ cliModules;
     lib = nixpkgs.lib;
     homes = {
       personal-linux = rec {
         system = "x86_64-linux";
         username = "mebaran";
         homeDirectory = "/home/${username}";
+        modules = desktopModules;
       };
       mac = rec {
         system = "aarch64-darwin";
         username = "markbaran";
         homeDirectory = "/Users/${username}";
+        modules = cliModules;
       };
       work-linux = rec {
         system = "x86_64-linux";
         username = "mbaran";
         homeDirectory = "/home/${username}";
+        modules = cliModules;
       };
     };
     homeMaker = {
       system,
       username,
       homeDirectory,
-    }: let pkgs = import nixpkgs {
-      inherit system;
-      overlays = [ mynixoverlays.overlays.default ];
-    };
+      modules,
+    }: let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [mynixoverlays.overlays.default];
+      };
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home.nix
-        ];
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        inherit pkgs modules;
         extraSpecialArgs = {
           inherit mynixvim system username homeDirectory;
         };
       };
       devShells.${system}.default = pkgs.mkShell {
-        buildInputs = [ mynixvim.packages.${system}.nixlang ];
+        buildInputs = [mynixvim.packages.${system}.nixlang];
       };
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
-    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs); 
+    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs);
 }

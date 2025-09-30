@@ -2,8 +2,9 @@
   imports = [
     ./python.nix
     ./tmux.nix
-    ./zsh.nix
+    ./yazi.nix
     ./zellij
+    ./zsh.nix
   ];
   programs = {
     dircolors = {
@@ -80,20 +81,15 @@
       enableZshIntegration = true;
     };
 
-    yazi = {
+    pgcli = {
       enable = true;
-      enableZshIntegration = true;
+      settings = {
+        main = {
+          pager = "pspg";
+          multi-line = true;
+        };
+      };
     };
-
-    # pgcli = {
-    #   enable = true;
-    #   settings = {
-    #     main = {
-    #       pager = "pspg";
-    #       multi-line = true;
-    #     };
-    #   };
-    # };
     
     jq = {
       enable = true;
