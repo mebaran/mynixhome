@@ -69,8 +69,8 @@
     wl-clip-persist
     wl-color-picker
     wofi-power-menu
-  ]; 
-  
+  ];
+
   programs = {
     waybar.enable = true;
     wofi.enable = true;
@@ -79,7 +79,6 @@
       enable = true;
       settings = {
         prefer-no-csd = true;
-        hotkey-overlay.skip-at-startup = true;
         screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
@@ -121,7 +120,7 @@
 
           touchpad = {
             accel-speed = 0.5;
-          }; 
+          };
 
           focus-follows-mouse = {
             enable = true;
@@ -173,15 +172,16 @@
           "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
           "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
 
-          "Super+X".action = close-window;
-          "Super+A".action = sh "pidof wofi || wofi"; # launcher
-          "Super+L".action = sh "loginctl lock-session"; # lock screen
-          "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
-          "Super+Y".action = sh "swaync-client -t"; # notification hub
-          "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
-          "Super+T".action = spawn "ghostty +new-window"; # terminal
-          "Super+C".action = spawn "qalculate-gtk"; # calculator
-          "Super+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
+          "Mod+A".action = sh "pidof wofi || wofi"; # launcher
+          "Mod+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
+          "Mod+C".action = spawn "qalculate-gtk"; # calculator
+          "Mod+E".action = quit;
+          "Mod+L".action = sh "loginctl lock-session"; # lock screen
+          "Mod+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
+          "Mod+T".action = spawn "ghostty +new-window"; # terminal
+          "Mod+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
+          "Mod+X".action = close-window;
+          "Mod+Y".action = sh "swaync-client -t"; # notification hub
         };
 
         gestures.hot-corners.enable = false;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./fuzzel.nix
     ./hyprlock.nix
