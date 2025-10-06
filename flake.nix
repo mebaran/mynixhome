@@ -4,8 +4,14 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    stylix = {
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,18 +37,20 @@
     mynixvim,
     mynixoverlays,
     niri,
+    stylix,
     ...
   }: let
     cliModules = [
+      stylix.homeModules.stylix
       ./home.nix
     ];
     desktopModules =
-      [
+      cliModules
+      ++ [
         niri.homeModules.niri
-        # niri.homeModules.stylix
+        niri.homeModules.stylix
         ./desktop
-      ]
-      ++ cliModules;
+      ];
     lib = nixpkgs.lib;
     homes = {
       personal-linux = rec {
