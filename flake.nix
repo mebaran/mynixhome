@@ -20,13 +20,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-ai-tools = {
+      url = "github:numtide/nix-ai-tools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mynixvim = {
       url = "github:mebaran/mynixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.mynixoverlays.follows = "mynixoverlays";
-    };
-    mynixoverlays = {
-      url = "github:mebaran/mynixoverlays";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -35,9 +35,9 @@
     nixpkgs,
     home-manager,
     mynixvim,
-    mynixoverlays,
-    niri,
     stylix,
+    niri,
+    nix-ai-tools,
     ...
   }: let
     cliModules = [
@@ -80,7 +80,6 @@
     }: let
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [mynixoverlays.overlays.default];
       };
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
@@ -88,6 +87,7 @@
         inherit pkgs modules;
         extraSpecialArgs = {
           inherit mynixvim system username homeDirectory;
+          aitools = nix-ai-tools.packages.${system};
         };
       };
       devShells.${system}.default = pkgs.mkShell {

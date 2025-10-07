@@ -10,7 +10,7 @@
   colors = config.stylix.targets.nixvim.exportedModule;
 in {
   stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/blueforest.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
   
   programs.home-manager.enable = true;
   
