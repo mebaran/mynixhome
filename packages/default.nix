@@ -2,7 +2,14 @@
   pkgs,
   aitools,
   ...
-}: {
+}: let
+  aipkgs = with aitools; [
+    gemini-cli
+    goose-cli
+    opencode
+    qwen-code
+  ];
+in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs;
     [
@@ -63,14 +70,7 @@
       bun
       nodejs
     ]
-    ++ (
-      with aitools; [
-        gemini-cli
-        goose-cli
-        opencode
-        qwen-code
-      ]
-    );
+    ++ aipkgs;
   home.sessionVariables = {
     USQL_PAGER = "pspg";
   };
