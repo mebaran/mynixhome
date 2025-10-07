@@ -56,7 +56,13 @@ in {
       prompt = "Open 🏠 directory > ";
       action = ''fd --type d --max-depth 1 -x basename '{/}' | sort'';
       application = ''xdg-open "$HOME"/"$RESULT"'';
-      inputs = [pkgs.fd];
+      inputs = [pkgs.fd pkgs.cliphist];
+    })
+    (makeFuzzelScript {
+      name = "fuzzel-cliphist";
+      prompt = "Choose clipboard item > ";
+      action = ''cliphist list'';
+      application = ''echo "$RESULT" | cliphist decode | wl-copy'';
     })
   ];
 }

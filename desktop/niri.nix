@@ -172,14 +172,15 @@
           "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
           "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
 
-          "Mod+A".action = sh "pidof wofi || wofi"; # launcher
+          "Mod+A".action = spawn "fuzzel"; # launcher
           "Mod+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
           "Mod+C".action = spawn "qalculate-gtk"; # calculator
           "Mod+E".action = quit;
           "Mod+L".action = sh "loginctl lock-session"; # lock screen
           "Mod+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
-          "Mod+T".action = spawn "ghostty +new-window"; # terminal
-          "Mod+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
+          "Mod+R".action = spawn "fuzzel-rooter";
+          "Mod+T".action = spawn "ghostty" "+new-window"; # terminal
+          "Mod+V".action = spawn "fuzzel-cliphist"; # clipboard history
           "Mod+X".action = close-window;
           "Mod+Y".action = sh "swaync-client -t"; # notification hub
         };
