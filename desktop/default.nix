@@ -1,7 +1,6 @@
 {
   imports = [
     ./fuzzel.nix
-    ./hyprlock.nix
     ./niri.nix
   ];
   programs = {

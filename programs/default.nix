@@ -90,7 +90,7 @@
         };
       };
     };
-    
+
     jq = {
       enable = true;
       # colors = "some-color-scheme"; # Replace with actual color scheme if desired
