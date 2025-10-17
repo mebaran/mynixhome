@@ -4,6 +4,7 @@
   ...
 }: let
   aipkgs = with aitools; [
+    codex
     gemini-cli
     goose-cli
     opencode
@@ -52,6 +53,7 @@ in {
       rage
       which
       zstd
+      jujutsu
 
       # nix related
       #
