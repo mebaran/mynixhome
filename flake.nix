@@ -29,6 +29,11 @@
       url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mytools = {
+      url = "github:mebaran/mytools";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -38,6 +43,7 @@
     stylix,
     niri,
     nix-ai-tools,
+    mytools,
     ...
   }: let
     cliModules = [
@@ -88,6 +94,7 @@
         extraSpecialArgs = {
           inherit mynixvim system username homeDirectory;
           aitools = nix-ai-tools.packages.${system};
+          mytools = mytools.packages.${system};
         };
       };
       devShells.${system}.default = pkgs.mkShell {

@@ -41,11 +41,17 @@
       enableZshIntegration = true;
     };
 
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+
     git = {
       enable = true;
-      userName = "mebaran";
-      userEmail = "mebaran@gmail.com";
-      delta.enable = true;
+      settings = {
+        user.name = "mebaran";
+        user.email = "mebaran@gmail.com";
+      };
       ignores = [
         ".direnv/"
         ".envrc"

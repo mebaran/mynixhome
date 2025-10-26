@@ -1,6 +1,8 @@
 {
+  lib,
   pkgs,
   aitools,
+  mytools,
   ...
 }: let
   aipkgs = with aitools; [
@@ -31,7 +33,6 @@ in {
       ldns # replacement of `dig`, it provide the command `drill`
       socat # replacement of openbsd-netcat
       nmap # A utility for network discovery and security auditing
-      ipcalc # it is a calculator for the IPv4/v6 addresses
       wget #classic downloader
       wormhole-rs #magic wormhole with Rust goodness
 
@@ -72,7 +73,7 @@ in {
       bun
       nodejs
     ]
-    ++ aipkgs;
+    ++ aipkgs ++ lib.attrValues mytools;
   home.sessionVariables = {
     USQL_PAGER = "pspg";
   };
