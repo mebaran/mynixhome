@@ -53,8 +53,8 @@
     desktopModules =
       cliModules
       ++ [
-        niri.homeModules.niri
-        niri.homeModules.stylix
+        # niri.homeModules.niri
+        # niri.homeModules.stylix
         ./desktop
       ];
     lib = nixpkgs.lib;
