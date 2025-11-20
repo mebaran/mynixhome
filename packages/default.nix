@@ -9,7 +9,6 @@
     codex
     gemini-cli
     goose-cli
-    opencode
     qwen-code
   ];
 in {
