@@ -9,7 +9,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +46,10 @@
     mytools,
     ...
   }: let
+    nixConfig = {
+      extra-substituters = ["https://numtide.cachix.org"];
+      extra-trusted-public-keys = ["numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="];
+    };
     cliModules = [
       stylix.homeModules.stylix
       ./home.nix
@@ -103,5 +107,5 @@
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
-    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs);
+    nixConfig // (lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs));
 }
