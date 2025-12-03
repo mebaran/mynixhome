@@ -107,5 +107,5 @@
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
-    nixConfig // (lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs));
+    {inherit nixConfig;} // (lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs));
 }

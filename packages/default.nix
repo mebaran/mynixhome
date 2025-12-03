@@ -54,6 +54,7 @@ in {
       which
       zstd
       jujutsu
+      miller
 
       # nix related
       #
