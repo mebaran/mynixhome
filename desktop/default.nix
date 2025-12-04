@@ -8,5 +8,4 @@
       enableZshIntegration = true;
     };
   };
-  services.cliphist.enable = true;
 }
