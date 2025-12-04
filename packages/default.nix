@@ -55,6 +55,7 @@ in {
       zstd
       jujutsu
       miller
+      dconf
 
       # nix related
       #

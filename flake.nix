@@ -1,6 +1,11 @@
 {
   description = "MEB Home Manager";
 
+  nixConfig = {
+    extra-substituters = ["https://numtide.cachix.org"];
+    extra-trusted-public-keys = ["numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="];
+  };
+
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -28,6 +33,7 @@
     mynixvim = {
       url = "github:mebaran/mynixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-ai-tools.follows = "nix-ai-tools";
     };
 
     mytools = {
@@ -46,10 +52,6 @@
     mytools,
     ...
   }: let
-    nixConfig = {
-      extra-substituters = ["https://numtide.cachix.org"];
-      extra-trusted-public-keys = ["numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="];
-    };
     cliModules = [
       stylix.homeModules.stylix
       ./home.nix
@@ -107,5 +109,5 @@
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
   in
-    {inherit nixConfig;} // (lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs));
+    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs);
 }
