@@ -74,6 +74,10 @@ in {
       # npm and npx
       bun
       nodejs
+
+      # cloud
+      awscli
+      google-cloud-sdk
     ]
     ++ aipkgs ++ lib.attrValues mytools;
   home.sessionVariables = {
