@@ -41,6 +41,7 @@ in {
       postgresql
       sqlite
       lazysql
+      duckdb
 
       # misc
       broot
