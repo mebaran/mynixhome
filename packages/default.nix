@@ -7,10 +7,11 @@
 }: let
   aipkgs = with aitools; [
     codex
+    codex-acp
+    eca
     gemini-cli
     goose-cli
     opencode
-    qwen-code
   ];
 in {
   # Packages that should be installed to the user profile.
