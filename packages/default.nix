@@ -80,7 +80,7 @@ in {
       nodejs
 
       # cloud
-      awscli
+      awscli2
       google-cloud-sdk
     ]
     ++ aipkgs ++ lib.attrValues mytools;
