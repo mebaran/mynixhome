@@ -9,8 +9,7 @@
   aipkgs = with aitools; [
     codex
     codex-acp
-    eca
-    gemini-cli
+    # gemini-cli
     goose-cli
     opencode
   ];
