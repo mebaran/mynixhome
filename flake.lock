@@ -234,11 +234,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1772436804,
-        "narHash": "sha256-yFfN+AQm53UFJVFmHOJzKbF2wPohtKQQ+p8GSVTt2Os=",
+        "lastModified": 1772439816,
+        "narHash": "sha256-YVxKPQDDm2WWXFenhtdL5amqVv5DCL3l2goxhq5bz/4=",
         "owner": "mebaran",
         "repo": "mynixvim",
-        "rev": "d9befd8196d47424967667c7dc4090de52dcc67e",
+        "rev": "ad1d5630a78d8ddc7ab4337e030e71ce8aaf96ac",
         "type": "github"
       },
       "original": {
