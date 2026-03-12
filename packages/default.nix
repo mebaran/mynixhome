@@ -5,19 +5,17 @@
   mytools,
   ...
 }: let
-  bruin = pkgs.callPackage ./bruin.nix {};
   aipkgs = with aitools; [
     codex
     codex-acp
     # gemini-cli
-    goose-cli
+    # goose
     opencode
   ];
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs;
     [
-      bruin
       # archives
       zip
       xz
