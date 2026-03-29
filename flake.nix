@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-ai-tools = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +42,6 @@
     home-manager,
     mynixvim,
     stylix,
-    niri,
     nix-ai-tools,
     mytools,
     ...
@@ -59,8 +53,6 @@
     desktopModules =
       cliModules
       ++ [
-        # niri.homeModules.niri
-        # niri.homeModules.stylix
         ./desktop
       ];
     lib = nixpkgs.lib;

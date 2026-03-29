@@ -13,7 +13,4 @@
     keyMode = "vi";
     escapeTime = 0;
   };
-  home.packages = [
-    pkgs.tmuxp
-  ];
 }
