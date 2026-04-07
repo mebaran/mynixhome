@@ -11,6 +11,7 @@
     # gemini-cli
     # goose
     opencode
+    spec-kit
   ];
 in {
   # Packages that should be installed to the user profile.
