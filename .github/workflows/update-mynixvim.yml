@@ -23,7 +23,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update mynixvim input
-        run: nix flake lock --update-input mynixvim
+        run: nix flake update mynixvim
 
       - name: Check flake
         run: nix flake check
