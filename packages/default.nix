@@ -8,8 +8,7 @@
   aipkgs = with aitools; [
     codex
     codex-acp
-    # gemini-cli
-    # goose
+    gitagent
     opencode
     spec-kit
   ];
