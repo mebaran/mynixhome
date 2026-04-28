@@ -87,15 +87,15 @@
       enableZshIntegration = true;
     };
 
-    pgcli = {
-      enable = true;
-      settings = {
-        main = {
-          pager = "pspg";
-          multi-line = true;
-        };
-      };
-    };
+    # pgcli = {
+    #   enable = true;
+    #   settings = {
+    #     main = {
+    #       pager = "pspg";
+    #       multi-line = true;
+    #     };
+    #   };
+    # };
 
     jq = {
       enable = true;

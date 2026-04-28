@@ -8,7 +8,7 @@
   aipkgs = with aitools; [
     codex
     codex-acp
-    gitagent
+    gitclaw
     opencode
     spec-kit
   ];
