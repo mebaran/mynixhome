@@ -26,7 +26,7 @@ jobs:
         run: nix flake update mynixvim
 
       - name: Run lightweight CI check
-        run: nix eval .#homeConfigurations.personal-linux.activationPackage.drvPath --raw
+        run: nix eval .#homeConfigurations.mebaran.activationPackage.drvPath --raw
 
       - name: Create Pull Request
         id: create-pr
