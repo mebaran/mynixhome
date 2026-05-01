@@ -26,7 +26,7 @@ jobs:
         run: nix flake update mynixvim
 
       - name: Run lightweight CI check
-        run: nix eval .#homeConfigurations.personal-linux.activationPackage.drvPath --raw
+        run: nix eval .#homeConfigurations.mebaran.activationPackage.drvPath --raw
 
       - name: Create Pull Request
         id: create-pr
@@ -44,10 +44,6 @@ jobs:
             Please review the changes before merging.
           branch: update-mynixvim-input
           delete-branch: true
-
-      - name: Wait before merge
-        if: steps.create-pr.outputs.pull-request-number
-        run: sleep 1800
 
       - name: Merge PR immediately
         if: steps.create-pr.outputs.pull-request-number
