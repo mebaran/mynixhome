@@ -87,6 +87,7 @@
       };
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
+      formatter.${system} = pkgs.alejandra;
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs modules;
         extraSpecialArgs = {
@@ -96,7 +97,10 @@
         };
       };
       devShells.${system}.default = pkgs.mkShell {
-        buildInputs = [mynixvim.packages.${system}.nixlang];
+        buildInputs = [
+          mynixvim.packages.${system}.nixlang
+          pkgs.alejandra
+        ];
       };
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;

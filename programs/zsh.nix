@@ -31,6 +31,10 @@
         fi
       '';
       initContent = ''
+        if [[ -n "$KITTY_WINDOW_ID" ]]; then
+          alias ssh="kitten ssh"
+        fi
+
         # ZSH Autocomplete Config
         zstyle ':autocomplete:*' min-input 999
         bindkey '\t' menu-select "$terminfo[kcbt]" menu-select

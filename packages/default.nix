@@ -65,6 +65,7 @@ in {
       # with more details log output
       nh
       nix-output-monitor
+      alejandra
 
       # productivity
       glow # markdown previewer in terminal

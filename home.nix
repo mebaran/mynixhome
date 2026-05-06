@@ -11,15 +11,15 @@
 in {
   stylix.enable = true;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
-  
+
   programs.home-manager.enable = true;
-  
+
   home = {
     inherit username homeDirectory;
   };
-  
+
   home.stateVersion = "24.11";
-  
+
   home.packages = [
     (mynixvim.packages.${system}.nixlang.extend colors)
   ];
@@ -27,7 +27,7 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
   };
- 
+
   imports = [
     ./files
     ./packages
