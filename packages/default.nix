@@ -80,6 +80,7 @@ in {
       # cloud
       awscli2
       google-cloud-sdk
+      render-cli
     ]
     ++ aipkgs ++ lib.attrValues mytools;
   home.sessionVariables = {
