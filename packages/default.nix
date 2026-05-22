@@ -10,6 +10,7 @@
     codex-acp
     gitclaw
     opencode
+    pi-agent
     spec-kit
   ];
 in {
