@@ -10,8 +10,9 @@
     codex-acp
     gitclaw
     opencode
-    pi-agent
+    pi
     spec-kit
+    zat
   ];
 in {
   # Packages that should be installed to the user profile.
@@ -81,6 +82,7 @@ in {
       # cloud
       awscli2
       google-cloud-sdk
+      opentofu
       render-cli
     ]
     ++ aipkgs ++ lib.attrValues mytools;
