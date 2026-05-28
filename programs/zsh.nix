@@ -24,6 +24,7 @@
       shellAliases = {
         j = "z";
         e = "$EDITOR";
+        keeper = "uvx --from keepercommander keeper";
       };
       envExtra = ''
         if [[ -f "$HOME/.zshkeys" ]]; then

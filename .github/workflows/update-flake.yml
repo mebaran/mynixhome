@@ -28,6 +28,9 @@ jobs:
       - name: Run lightweight CI check
         run: nix eval .#homeConfigurations.mebaran.activationPackage.drvPath --raw
 
+      - name: Run lightweight Nixvim check
+        run: nix eval .#packages.x86_64-linux.nvim.drvPath --raw
+
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v8
@@ -41,7 +44,7 @@ jobs:
             Changes:
             - Updated nixpkgs to latest unstable
             - Updated home-manager to latest version
-            - Updated mynixvim to latest version
+            - Updated nixvim to latest version
             
             Please review the changes before merging.
           branch: update-flake-inputs

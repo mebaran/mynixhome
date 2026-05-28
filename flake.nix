@@ -25,10 +25,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mynixvim = {
-      url = "github:mebaran/mynixvim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-ai-tools.follows = "nix-ai-tools";
     };
 
     mytools = {
@@ -38,16 +37,63 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
-    mynixvim,
+    nixvim,
     stylix,
     nix-ai-tools,
     mytools,
     ...
   }: let
+    lib = nixpkgs.lib;
+    nvimSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+      "aarch64-darwin"
+    ];
+    nvimLangs = {
+      nixlang = import ./nixvim/lang/nixlang.nix;
+      python = import ./nixvim/lang/python.nix;
+      web = import ./nixvim/lang/web.nix;
+      sql = import ./nixvim/lang/sql.nix;
+      golang = import ./nixvim/lang/golang.nix;
+      json = import ./nixvim/lang/json.nix;
+      markdown = import ./nixvim/lang/markdown.nix;
+    };
+    nvimOutputsFor = system: let
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+      nixvimLib = nixvim.lib.${system};
+      nixvim' = nixvim.legacyPackages.${system};
+      nixvimModule = {
+        inherit pkgs;
+        module = import ./nixvim/config;
+        extraSpecialArgs = {
+          aitools = nix-ai-tools.packages.${system};
+        };
+      };
+      baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
+      allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
+      nvimPackages =
+        {
+          nvim = allLangNvim;
+          nvim-all = allLangNvim;
+        }
+        // lib.mapAttrs' (name: value:
+          lib.nameValuePair "nvim-${name}" (baseNvim.extend value))
+        nvimLangs;
+    in {
+      packages.${system} = nvimPackages;
+      checks.${system}.nvim = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+      devShells.${system} = lib.mapAttrs' (name: value:
+        lib.nameValuePair name (pkgs.mkShell {buildInputs = [value];}))
+      nvimPackages;
+    };
     cliModules = [
       stylix.homeModules.stylix
+      nixvim.homeModules.nixvim
       ./home.nix
     ];
     desktopModules =
@@ -55,7 +101,6 @@
       ++ [
         ./desktop
       ];
-    lib = nixpkgs.lib;
     homes = {
       personal-linux = rec {
         system = "x86_64-linux";
@@ -91,19 +136,20 @@
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs modules;
         extraSpecialArgs = {
-          inherit mynixvim system username homeDirectory;
+          inherit system username homeDirectory;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
         };
       };
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
-          mynixvim.packages.${system}.nixlang
+          self.packages.${system}.nvim-nixlang
           pkgs.alejandra
         ];
       };
     };
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
+    nvimConfigs = lib.genAttrs nvimSystems nvimOutputsFor;
   in
-    lib.foldl lib.recursiveUpdate {} (lib.attrValues homeConfigs);
+    lib.foldl lib.recursiveUpdate {} (lib.attrValues (homeConfigs // nvimConfigs));
 }
