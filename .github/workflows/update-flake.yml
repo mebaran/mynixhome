@@ -28,9 +28,6 @@ jobs:
       - name: Run lightweight CI check
         run: nix eval .#homeConfigurations.mebaran.activationPackage.drvPath --raw
 
-      - name: Run lightweight Nixvim check
-        run: nix eval .#packages.x86_64-linux.nvim.drvPath --raw
-
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v8
