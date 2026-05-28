@@ -6,7 +6,7 @@
 
   # LSP config with ty and ruff
   lsp = {
-    servers.basedpyright.enable = true;
+    servers.ty.enable = true;
     servers.ruff.enable = true;
   };
 
@@ -14,5 +14,6 @@
   plugins.conform-nvim.settings.formatters_by_ft.python = ["isort"];
   extraPackages = with pkgs; [
     isort
+    ty
   ];
 }
