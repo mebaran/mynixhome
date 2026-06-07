@@ -52,22 +52,4 @@
       runHook postInstall
     '';
   };
-
-  lean-ctx = pkgs.stdenvNoCC.mkDerivation {
-    pname = "lean-ctx";
-    version = "v3.7.5";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "yvgude";
-      repo = "lean-ctx";
-      ref = "refs/tags/v3.7.5";
-      hash = "sha256-1i7jr4w34bpgls0qzvjsk8wks7imb27h0wf6kjxv1idcsd64716w";
-    };
-
-    installPhase = ''
-      runHook preInstall
-      cp -R . "$out"
-      runHook postInstall
-    '';
-  };
 }

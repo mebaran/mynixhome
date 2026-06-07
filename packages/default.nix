@@ -5,6 +5,7 @@
   mytools,
   ...
 }: let
+  lean-ctx = pkgs.callPackage ./lean-ctx.nix {};
   aipkgs = with aitools; [
     codex
     codex-acp
@@ -87,7 +88,7 @@ in {
       opentofu
       render-cli
     ]
-    ++ aipkgs ++ lib.attrValues mytools;
+    ++ aipkgs ++ lib.attrValues mytools ++ [lean-ctx];
   home.sessionVariables = {
     USQL_PAGER = "pspg";
   };
