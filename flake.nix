@@ -74,6 +74,7 @@
           aitools = nix-ai-tools.packages.${system};
         };
       };
+      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
       nvimPackages =
@@ -85,7 +86,7 @@
           lib.nameValuePair "nvim-${name}" (baseNvim.extend value))
         nvimLangs;
     in {
-      packages.${system} = nvimPackages;
+      packages.${system} = nvimPackages // skillSources;
       checks.${system}.nvim = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
       devShells.${system} = lib.mapAttrs' (name: value:
         lib.nameValuePair name (pkgs.mkShell {buildInputs = [value];}))
@@ -130,6 +131,7 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
       formatter.${system} = pkgs.alejandra;
@@ -137,6 +139,7 @@
         inherit pkgs modules;
         extraSpecialArgs = {
           inherit system username homeDirectory;
+          inherit skillSources;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
         };

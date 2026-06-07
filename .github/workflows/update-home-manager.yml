@@ -1,0 +1,33 @@
+name: Update Home Manager
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 10 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-home-manager:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@v17
+
+      - name: Update skills and Home Manager inputs
+        run: make update-weekly
+
+      - name: Format Nix files
+        run: nix run nixpkgs#alejandra -- flake.nix packages/skill-sources.nix programs/pi.nix programs/skills.nix
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/update-home-manager
+          commit-message: "Update Home Manager inputs and Pi skill sources"
+          title: "Update Home Manager inputs and Pi skill sources"
+          body: "Automated weekly update. Pi skill source pins are updated before the Home Manager flake inputs."
+          labels: dependencies

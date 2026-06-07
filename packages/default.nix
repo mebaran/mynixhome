@@ -53,6 +53,7 @@ in {
       gnused
       gnutar
       imagemagick
+      openssl
       psutils
       rage
       which
@@ -73,6 +74,7 @@ in {
       glow # markdown previewer in terminal
 
       # AI and MCP
+      nix-update
       repomix
 
       # npm and npx
