@@ -75,12 +75,14 @@
         };
       };
       skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
+      lean-ctx = pkgs.callPackage ./packages/lean-ctx.nix {};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
       nvimPackages =
         {
           nvim = allLangNvim;
           nvim-all = allLangNvim;
+          inherit lean-ctx;
         }
         // lib.mapAttrs' (name: value:
           lib.nameValuePair "nvim-${name}" (baseNvim.extend value))
