@@ -96,6 +96,7 @@ in rec {
     "${skillSources.duckdb-skills}"
     "${skillSources.duckdb-skills}/skills"
     "${skillSources.aws-agent-toolkit-for-aws}/skills"
+    "${skillSources.pydantic-skills}/skills"
   ];
 
   managedSkills =

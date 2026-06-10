@@ -47,4 +47,18 @@ in {
 
     installPhase = installWithoutReadmes;
   };
+
+  pydantic-skills = pkgs.stdenvNoCC.mkDerivation {
+    pname = "pydantic-skills";
+    version = "0-unstable-2026-06-10";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "pydantic";
+      repo = "skills";
+      rev = "1e7a4567d8375e8ef07ad078d7f38bc03ce5e944";
+      hash = "sha256-PzuqYip+2lrJSgk2/e2x6Npe13r3txjLKzYIAOUHTpI=";
+    };
+
+    installPhase = installWithoutReadmes;
+  };
 }

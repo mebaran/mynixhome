@@ -1,5 +1,5 @@
 NIX_UPDATE ?= nix run nixpkgs\#nix-update --
-SKILL_SOURCE_PACKAGES := openai-skills duckdb-skills aws-agent-toolkit-for-aws
+SKILL_SOURCE_PACKAGES := openai-skills duckdb-skills aws-agent-toolkit-for-aws pydantic-skills
 
 .PHONY: update-home-manager update-skills update-weekly
 
