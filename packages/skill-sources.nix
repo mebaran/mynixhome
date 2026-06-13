@@ -36,13 +36,13 @@ in {
 
   aws-agent-toolkit-for-aws = pkgs.stdenvNoCC.mkDerivation {
     pname = "aws-agent-toolkit-for-aws";
-    version = "0-unstable-2026-06-09";
+    version = "0-unstable-2026-06-11";
 
     src = pkgs.fetchFromGitHub {
       owner = "aws";
       repo = "agent-toolkit-for-aws";
-      rev = "c0991f463b54ac94af32a730d6d13293dcff98cf";
-      hash = "sha256-QiR07nlnajVu50hAeOizj5qhMkbOWKmD1bpkb1Y2c2c=";
+      rev = "f5ba81082aafe865ffe947ceabc574a7a0353e57";
+      hash = "sha256-fdZLq4RxrUv12MkMMxW1aIDnr+CTzKynSopb1pFZrP0=";
     };
 
     installPhase = installWithoutReadmes;

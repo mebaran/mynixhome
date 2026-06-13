@@ -3,7 +3,7 @@
   stdenvNoCC,
   fetchurl,
 }: let
-  version = "3.7.5";
+  version = "3.8.0";
   releases = {
     x86_64-linux = {
       target = "x86_64-unknown-linux-musl";
@@ -15,7 +15,7 @@
     };
     aarch64-darwin = {
       target = "aarch64-apple-darwin";
-      hash = "sha256-v6V/tzM5begn6w94JDv+j64kVSZ9TxExH/NdQxjiPXc=";
+      hash = "sha256-K3Sd/fp0p0nIxBHYucGroReCbFXhcedCWTMX6LqOf7M=";
     };
   };
   release = releases.${stdenvNoCC.hostPlatform.system};

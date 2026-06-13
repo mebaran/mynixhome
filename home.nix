@@ -11,8 +11,6 @@ in {
   stylix.enable = true;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
 
-  gtk.gtk4.theme = config.gtk.theme;
-
   programs.home-manager.enable = true;
 
   home = {
