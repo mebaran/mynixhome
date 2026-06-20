@@ -1,9 +1,9 @@
-{pkgs, ...}: {
-  stylix.targets.dank-material-shell.enable = false;
+{config, pkgs, ...}: {
+  stylix.targets.dank-material-shell.enable = true;
 
   programs.dank-material-shell = {
     enable = true;
-    enableDynamicTheming = true;
+    enableDynamicTheming = false;
 
     systemd.enable = false;
 
@@ -42,4 +42,12 @@
     jq
     wl-clipboard
   ];
+
+  programs.niri.settings.layout.focus-ring = with config.lib.stylix.colors.withHashtag; {
+    enable = true;
+    width = 4;
+    active.color = base0D;
+    inactive.color = base03;
+    urgent.color = base08;
+  };
 }

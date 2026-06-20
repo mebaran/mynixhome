@@ -9,7 +9,7 @@
   colors = config.stylix.targets.nixvim.exportedModule;
 in {
   stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-dark.yaml";
 
   programs.home-manager.enable = true;
 
