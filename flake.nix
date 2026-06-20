@@ -20,6 +20,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-ai-tools = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +57,9 @@
     home-manager,
     nixvim,
     stylix,
+    dms,
+    dms-plugin-registry,
+    niri,
     nix-ai-tools,
     mytools,
     ...
@@ -102,6 +120,10 @@
     desktopModules =
       cliModules
       ++ [
+        dms.homeModules.dank-material-shell
+        dms.homeModules.niri
+        niri.homeModules.niri
+        dms-plugin-registry.homeModules.default
         ./desktop
       ];
     homes = {

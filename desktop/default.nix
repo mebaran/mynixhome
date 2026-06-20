@@ -1,6 +1,6 @@
 {
   imports = [
-    ./fuzzel.nix
+    ./dms.nix
   ];
   programs = {
     ghostty = {
