@@ -120,9 +120,9 @@
     desktopModules =
       cliModules
       ++ [
+        niri.homeModules.niri
         dms.homeModules.dank-material-shell
         dms.homeModules.niri
-        niri.homeModules.niri
         dms-plugin-registry.homeModules.default
         ./desktop
       ];
