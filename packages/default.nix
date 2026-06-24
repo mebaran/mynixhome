@@ -10,6 +10,7 @@
     codex
     codex-acp
     gitclaw
+    herdr
     opencode
     pi
     spec-kit
