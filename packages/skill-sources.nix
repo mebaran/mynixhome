@@ -8,13 +8,13 @@
 in {
   openai-skills = pkgs.stdenvNoCC.mkDerivation {
     pname = "openai-skills";
-    version = "0-unstable-2026-05-29";
+    version = "0-unstable-2026-06-24";
 
     src = pkgs.fetchFromGitHub {
       owner = "openai";
       repo = "skills";
-      rev = "a8924c2a35cfa290458852c4fad17c9133054c2e";
-      hash = "sha256-drA/ypVE+yK4W2Bj8IUtWaVLF390Pfy7YLcmdju5dow=";
+      rev = "49f948faa9258a0c61caceaf225e179651397431";
+      hash = "sha256-t4oGnFg0YpxJaQiFpgTiwYhaFoZK6wPDiqvHoG0bXiU=";
     };
 
     installPhase = installWithoutReadmes;
@@ -36,13 +36,13 @@ in {
 
   aws-agent-toolkit-for-aws = pkgs.stdenvNoCC.mkDerivation {
     pname = "aws-agent-toolkit-for-aws";
-    version = "0-unstable-2026-06-11";
+    version = "0-unstable-2026-07-02";
 
     src = pkgs.fetchFromGitHub {
       owner = "aws";
       repo = "agent-toolkit-for-aws";
-      rev = "f5ba81082aafe865ffe947ceabc574a7a0353e57";
-      hash = "sha256-fdZLq4RxrUv12MkMMxW1aIDnr+CTzKynSopb1pFZrP0=";
+      rev = "aea59f3570608a77c0b32c2ee1beee06222bad57";
+      hash = "sha256-S/mRNua4oqUUGd+Po51oWnhLleJPEmjACuNd3cexQX0=";
     };
 
     installPhase = installWithoutReadmes;
@@ -50,13 +50,13 @@ in {
 
   pydantic-skills = pkgs.stdenvNoCC.mkDerivation {
     pname = "pydantic-skills";
-    version = "0-unstable-2026-06-10";
+    version = "0-unstable-2026-06-30";
 
     src = pkgs.fetchFromGitHub {
       owner = "pydantic";
       repo = "skills";
-      rev = "1e7a4567d8375e8ef07ad078d7f38bc03ce5e944";
-      hash = "sha256-PzuqYip+2lrJSgk2/e2x6Npe13r3txjLKzYIAOUHTpI=";
+      rev = "dbfb31fc1ea103dcd544b6454be4d81bcb636626";
+      hash = "sha256-yuxS0yquYivi43TTi5c1Vehu28e+x0sqbNe1cr4Wv/g=";
     };
 
     installPhase = installWithoutReadmes;

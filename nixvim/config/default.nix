@@ -9,6 +9,14 @@
     ripgrep
   ];
 
+  extraConfigLua = ''
+    local matugen_path = vim.fn.stdpath("config") .. "/lua/matugen.lua"
+
+    if vim.uv.fs_stat(matugen_path) then
+      dofile(matugen_path)
+    end
+  '';
+
   performance = {
     byteCompileLua = {
       enable = true;
