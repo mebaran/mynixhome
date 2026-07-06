@@ -24,6 +24,7 @@ jobs:
         run: nix run nixpkgs#alejandra -- flake.nix packages/skill-sources.nix programs/pi.nix programs/skills.nix
 
       - name: Create pull request
+        id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: automation/update-home-manager
@@ -31,3 +32,9 @@ jobs:
           title: "Update Home Manager inputs and Pi skill sources"
           body: "Automated weekly update. Pi skill source pins are updated before the Home Manager flake inputs."
           labels: dependencies
+
+      - name: Merge PR immediately
+        if: steps.create-pr.outputs.pull-request-number
+        run: gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --squash --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
