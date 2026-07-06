@@ -2,8 +2,14 @@
   description = "MEB Home Manager";
 
   nixConfig = {
-    extra-substituters = ["https://numtide.cachix.org"];
-    extra-trusted-public-keys = ["numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="];
+    extra-substituters = [
+      "https://numtide.cachix.org"
+      "https://noctalia.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
   };
 
   inputs = {
@@ -35,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-ai-tools = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +71,7 @@
     dms,
     dms-plugin-registry,
     niri,
+    noctalia,
     nix-ai-tools,
     mytools,
     ...
@@ -120,7 +132,8 @@
     desktopModules =
       cliModules
       ++ [
-        niri.homeModules.niri
+        niri.homeModules.config
+        noctalia.homeModules.default
         dms.homeModules.dank-material-shell
         dms.homeModules.niri
         dms-plugin-registry.homeModules.default
@@ -166,6 +179,7 @@
           inherit skillSources;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
+          niriPackage = niri.packages.${system}.niri-unstable;
         };
       };
       devShells.${system}.default = pkgs.mkShell {
