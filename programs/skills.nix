@@ -123,10 +123,9 @@ in rec {
   packagePacks = {
     core = [
       "npm:pi-subagents"
-      "npm:@vanillagreen/pi-skills-manager"
-      "npm:@vanillagreen/pi-web-tools"
       "npm:pi-lean-ctx"
-      "npm:@victor-software-house/pi-curated-themes"
+      "npm:pi-btw"
+      "npm:pi-web-access"
     ];
   };
 

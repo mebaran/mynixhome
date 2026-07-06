@@ -5,10 +5,8 @@
   username,
   homeDirectory,
   ...
-}: let
-  colors = config.stylix.targets.nixvim.exportedModule;
-in {
-  stylix.enable = true;
+}: {
+  stylix.enable = false;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-city-dark.yaml";
 
   programs.home-manager.enable = true;
@@ -33,7 +31,6 @@ in {
       ./nixvim/lang/golang.nix
       ./nixvim/lang/json.nix
       ./nixvim/lang/markdown.nix
-      colors
     ];
   };
 

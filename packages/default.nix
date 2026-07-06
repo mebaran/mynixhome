@@ -8,13 +8,14 @@
   lean-ctx = pkgs.callPackage ./lean-ctx.nix {};
   aipkgs = with aitools; [
     codex
-    codex-acp
-    gitclaw
+    # codex-acp
     herdr
+    hunk
     opencode
     pi
     spec-kit
-    zat
+    workmux
+    vix
   ];
 in {
   # Packages that should be installed to the user profile.
@@ -88,6 +89,9 @@ in {
       google-cloud-sdk
       opentofu
       render-cli
+
+      # AV
+      ffmpeg-full
     ]
     ++ aipkgs ++ lib.attrValues mytools ++ [lean-ctx];
   home.sessionVariables = {

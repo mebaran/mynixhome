@@ -167,8 +167,6 @@
     packages = piSkills.packages;
 
     skills = defaultSkills;
-
-    theme = "catppuccin-mocha";
   };
 
   skillFlags = skills: lib.concatMapStringsSep " " (skill: "--skill ${skill}") skills;
