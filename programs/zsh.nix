@@ -44,7 +44,7 @@
           export AWS_DEFAULT_REGION="$region"
           export AWS_REGION="$region"
 
-          aws sso login --profile "$profile" || return
+          aws login --profile "$profile" || aws sso login --profile "$profile" || return
 
           credentials_output="$(
             AWS_PROFILE="$profile" aws configure export-credentials \
