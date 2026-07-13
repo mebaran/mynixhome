@@ -36,13 +36,13 @@ in {
 
   aws-agent-toolkit-for-aws = pkgs.stdenvNoCC.mkDerivation {
     pname = "aws-agent-toolkit-for-aws";
-    version = "0-unstable-2026-07-06";
+    version = "0-unstable-2026-07-13";
 
     src = pkgs.fetchFromGitHub {
       owner = "aws";
       repo = "agent-toolkit-for-aws";
-      rev = "7b281dab22c30908a8699851aca24701f85dbfda";
-      hash = "sha256-ObvRKpgMpDvqoa3b1iYU/ThPJn0pZjQA5QRJCF5uJdc=";
+      rev = "7395888c2b6a06a66c967c5c83f339524d3d5d80";
+      hash = "sha256-tMhJEim6t18ZFGcJLk8iY5yQ0PJXy+8Mom4MnHEn7IM=";
     };
 
     installPhase = installWithoutReadmes;
@@ -50,13 +50,13 @@ in {
 
   pydantic-skills = pkgs.stdenvNoCC.mkDerivation {
     pname = "pydantic-skills";
-    version = "0-unstable-2026-06-30";
+    version = "0-unstable-2026-07-10";
 
     src = pkgs.fetchFromGitHub {
       owner = "pydantic";
       repo = "skills";
-      rev = "dbfb31fc1ea103dcd544b6454be4d81bcb636626";
-      hash = "sha256-yuxS0yquYivi43TTi5c1Vehu28e+x0sqbNe1cr4Wv/g=";
+      rev = "6730ba856ab097042e8e704cf4faba3cfb9bf672";
+      hash = "sha256-1y2nNgHbV3RH12h0/jodHI6UpGtnXxyshCiDg4+u9Nw=";
     };
 
     installPhase = installWithoutReadmes;
