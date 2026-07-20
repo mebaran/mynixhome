@@ -147,7 +147,6 @@
 
     home.packages = with pkgs; [
       curl
-      jq
       wl-clipboard
     ];
   };

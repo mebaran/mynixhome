@@ -1,4 +1,4 @@
-{
+{aitools, ...}: {
   xdg.configFile."direnv/direnvrc".text = ''
     use_aws_profile() {
       local profile="''${1:-''${AWS_PROFILE:-default}}"
@@ -47,6 +47,17 @@
     ./zsh.nix
   ];
   programs = {
+    awscli.enable = true;
+
+    broot.enable = true;
+
+    bun.enable = true;
+
+    codex = {
+      enable = true;
+      package = aitools.codex;
+    };
+
     dircolors = {
       enable = true;
       enableZshIntegration = true;
@@ -86,6 +97,8 @@
       enableGitIntegration = true;
     };
 
+    gpg.enable = true;
+
     git = {
       enable = true;
       settings = {
@@ -108,6 +121,22 @@
 
     gh-dash = {
       enable = true;
+    };
+
+    herdr = {
+      enable = true;
+      package = aitools.herdr;
+    };
+
+    jujutsu.enable = true;
+
+    lazysql.enable = true;
+
+    nh.enable = true;
+
+    opencode = {
+      enable = true;
+      package = aitools.opencode;
     };
 
     ssh = {

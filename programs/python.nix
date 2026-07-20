@@ -6,8 +6,8 @@
 in {
   home.packages = [
     pyDist
-    pkgs.uv
   ];
+  programs.uv.enable = true;
   home.sessionVariables = {
     UV_PYTHON = pyDist.interpreter;
     UV_PYTHON_DOWNLOADS = "never";

@@ -7,11 +7,8 @@
 }: let
   lean-ctx = pkgs.callPackage ./lean-ctx.nix {};
   aipkgs = with aitools; [
-    codex
     # codex-acp
-    herdr
     hunk
-    opencode
     pi
     spec-kit
     workmux
@@ -45,14 +42,11 @@ in {
       pspg
       postgresql
       sqlite
-      lazysql
       duckdb
 
       # misc
-      broot
       file
       gawk
-      gnupg
       gnused
       gnutar
       imagemagick
@@ -61,7 +55,6 @@ in {
       rage
       which
       zstd
-      jujutsu
       miller
       dconf
 
@@ -69,7 +62,6 @@ in {
       #
       # it provides the command `nom` works just like `nix`
       # with more details log output
-      nh
       nix-output-monitor
       alejandra
 
@@ -80,12 +72,11 @@ in {
       nix-update
       repomix
 
-      # npm and npx
-      bun
+      # JavaScript and TypeScript runtimes
+      deno
       nodejs
 
       # cloud
-      awscli2
       google-cloud-sdk
       opentofu
       render-cli
