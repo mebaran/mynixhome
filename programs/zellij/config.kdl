@@ -1,11 +1,64 @@
-theme "vesper"
+theme "meb-vesper"
 copy_on_select true
+
+// Keep the UI minimal and let zjstatus carry the useful context.
+themes {
+    meb-vesper {
+        fg 218 219 234
+        bg 16 17 23
+        black 16 17 23
+        red 237 135 150
+        green 166 227 161
+        yellow 249 226 175
+        blue 137 180 250
+        magenta 203 166 247
+        cyan 148 226 213
+        white 218 219 234
+        orange 250 179 135
+    }
+}
+
 keybinds {
     shared_except "locked" {
         bind "Ctrl y" {
             LaunchOrFocusPlugin "forgot" {
                 floating true
             }
+        }
+
+        bind "Ctrl g" {
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+
+        bind "Ctrl Alt t" {
+            LaunchOrFocusPlugin "what-time" {
+                floating true
+                time_format "%H:%M:%S"
+                interval_update "1.0"
+            }
+        }
+
+        bind "Alt a" {
+            Run "zellij-adopt"
+        }
+
+        bind "Alt A" {
+            Run "zellij-adopt" "--terminal"
+        }
+
+        bind "Alt z" {
+            MessagePlugin "autolock" { payload "disable"; }
+            SwitchToMode "Locked"
+        }
+    }
+
+    locked {
+        bind "Alt z" {
+            MessagePlugin "autolock" { payload "enable"; }
+            SwitchToMode "Normal"
         }
     }
 }

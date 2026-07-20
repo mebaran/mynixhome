@@ -1,14 +1,73 @@
-layout { 
-    pane size=2 split_direction="vertical" {
-        pane size="75%" borderless=true {
-            plugin location="zellij:compact-bar"
-        }
-        pane size="25%" borderless=true {
-            plugin location="what-time" {
-                time_format "%H:%M:%S"
-                interval_update "1.0"
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="zjstatus" {
+                hide_frame_for_single_pane "false"
+                format_hide_on_overlength "true"
+                format_precedence "lrc"
+
+                color_bg       "#101117"
+                color_surface  "#1e1e2e"
+                color_overlay  "#313244"
+                color_muted    "#6c7086"
+                color_fg       "#cdd6f4"
+                color_red      "#f38ba8"
+                color_green    "#a6e3a1"
+                color_yellow   "#f9e2af"
+                color_blue     "#89b4fa"
+                color_magenta  "#cba6f7"
+                color_cyan     "#94e2d5"
+                color_orange   "#fab387"
+
+                format_left   "{mode}#[bg=$bg,fg=$muted] #[bg=$bg,fg=$blue,bold]󰰢 {session} #[bg=$bg]{tabs}"
+                format_center "#[bg=$bg,fg=$muted] Ctrl-y keys • Ctrl-g sessions • Alt-n pane • Ctrl-p pane-mode • Ctrl-t tab-mode "
+                format_right  "{command_git_branch}#[bg=$bg,fg=$muted] {datetime} "
+                format_space  "#[bg=$bg]"
+
+                border_enabled  "true"
+                border_char     "─"
+                border_format   "#[fg=$overlay]{char}"
+                border_position "top"
+
+                mode_normal        "#[bg=$green,fg=$bg,bold] NORMAL #[bg=$bg,fg=$green]#[bg=$bg,fg=$muted] Ctrl-p panes · Ctrl-t tabs · Ctrl-s scroll "
+                mode_locked        "#[bg=$red,fg=$bg,bold] LOCKED  #[bg=$bg,fg=$red]#[bg=$bg,fg=$muted] Alt-z unlock "
+                mode_pane          "#[bg=$blue,fg=$bg,bold] PANE #[bg=$bg,fg=$blue]#[bg=$bg,fg=$muted] n new · x close · f fullscreen · w float · arrows focus "
+                mode_tab           "#[bg=$magenta,fg=$bg,bold] TAB #[bg=$bg,fg=$magenta]#[bg=$bg,fg=$muted] n new · x close · r rename · s sync · arrows switch "
+                mode_scroll        "#[bg=$yellow,fg=$bg,bold] SCROLL #[bg=$bg,fg=$yellow]#[bg=$bg,fg=$muted] j/k or PgUp/PgDn · / search · e edit · Esc back "
+                mode_enter_search  "#[bg=$orange,fg=$bg,bold] SEARCH? #[bg=$bg,fg=$orange]#[bg=$bg,fg=$muted] type query · Enter search "
+                mode_search        "#[bg=$orange,fg=$bg,bold] SEARCH #[bg=$bg,fg=$orange]#[bg=$bg,fg=$muted] n next · p prev · Esc back "
+                mode_resize        "#[bg=$cyan,fg=$bg,bold] RESIZE #[bg=$bg,fg=$cyan]#[bg=$bg,fg=$muted] +/- or arrows resize · Esc back "
+                mode_rename_tab    "#[bg=$magenta,fg=$bg,bold] RENAME TAB #[bg=$bg,fg=$magenta]#[bg=$bg,fg=$muted] Enter save · Esc cancel "
+                mode_rename_pane   "#[bg=$blue,fg=$bg,bold] RENAME PANE #[bg=$bg,fg=$blue]#[bg=$bg,fg=$muted] Enter save · Esc cancel "
+                mode_session       "#[bg=$cyan,fg=$bg,bold] SESSION #[bg=$bg,fg=$cyan]#[bg=$bg,fg=$muted] d detach · w manager · p plugins "
+                mode_move          "#[bg=$yellow,fg=$bg,bold] MOVE #[bg=$bg,fg=$yellow]#[bg=$bg,fg=$muted] arrows move pane/tab · Esc back "
+                mode_prompt        "#[bg=$magenta,fg=$bg,bold] PROMPT #[bg=$bg,fg=$magenta]#[bg=$bg,fg=$muted] Enter confirm · Esc cancel "
+                mode_tmux          "#[bg=$orange,fg=$bg,bold] TMUX #[bg=$bg,fg=$orange]#[bg=$bg,fg=$muted] tmux-style prefix commands "
+                mode_default_to_mode "normal"
+
+                tab_normal              "#[bg=$bg,fg=$blue]#[bg=$blue,fg=$bg,bold]{index} #[bg=$surface,fg=$fg] {name}{sync_indicator}{fullscreen_indicator}{floating_indicator} #[bg=$bg,fg=$surface]"
+                tab_active              "#[bg=$bg,fg=$orange]#[bg=$orange,fg=$bg,bold]{index} #[bg=$surface,fg=$fg,bold] {name}{sync_indicator}{fullscreen_indicator}{floating_indicator} #[bg=$bg,fg=$surface]"
+                tab_normal_fullscreen   "#[bg=$bg,fg=$blue]#[bg=$blue,fg=$bg,bold]{index} #[bg=$surface,fg=$fg] {name}{fullscreen_indicator} #[bg=$bg,fg=$surface]"
+                tab_active_fullscreen   "#[bg=$bg,fg=$orange]#[bg=$orange,fg=$bg,bold]{index} #[bg=$surface,fg=$fg,bold] {name}{fullscreen_indicator} #[bg=$bg,fg=$surface]"
+                tab_normal_sync         "#[bg=$bg,fg=$blue]#[bg=$blue,fg=$bg,bold]{index} #[bg=$surface,fg=$fg] {name}{sync_indicator} #[bg=$bg,fg=$surface]"
+                tab_active_sync         "#[bg=$bg,fg=$orange]#[bg=$orange,fg=$bg,bold]{index} #[bg=$surface,fg=$fg,bold] {name}{sync_indicator} #[bg=$bg,fg=$surface]"
+                tab_separator           "#[bg=$bg] "
+                tab_sync_indicator       " "
+                tab_fullscreen_indicator " 󰊓"
+                tab_floating_indicator   " 󰹙"
+                tab_display_count         "6"
+                tab_truncate_start_format "#[bg=$bg,fg=$muted] …+{count} "
+                tab_truncate_end_format   "#[bg=$bg,fg=$muted] +{count}… "
+
+                command_git_branch_command "git rev-parse --abbrev-ref HEAD 2>/dev/null"
+                command_git_branch_format "#[bg=$bg,fg=$green] 󰘬 {stdout} "
+                command_git_branch_interval "10"
+                command_git_branch_rendermode "static"
+
+                datetime "#[bg=$bg,fg=$magenta,bold] {format}"
+                datetime_format "%a %d %b %H:%M"
             }
         }
     }
-    pane
 }
