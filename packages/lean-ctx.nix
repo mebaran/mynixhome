@@ -3,11 +3,11 @@
   stdenvNoCC,
   fetchurl,
 }: let
-  version = "3.9.8";
+  version = "3.9.12";
   releases = {
     x86_64-linux = {
       target = "x86_64-unknown-linux-musl";
-      hash = "sha256-DZ+S+QdJ2TcQXy6JJlEI8IKqDTqtdULw8Bo+AFexfQg=";
+      hash = "sha256-TxnR8rlSKulinUDXNDP/OLcXUNFKsCMMJqHBpdMJwBQ=";
     };
     aarch64-linux = {
       target = "aarch64-unknown-linux-musl";
