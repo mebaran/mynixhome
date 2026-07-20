@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+file="${1:-packages/lean-ctx.nix}"
+version="$(nix eval --raw .#packages.x86_64-linux.lean-ctx.version)"
+tmp="$(mktemp "${TMPDIR:-/tmp}/lean-ctx.XXXXXX")"
+trap 'rm -f "$tmp"' EXIT
+
+cp "$file" "$tmp"
+
+update_hash() {
+  local system="$1"
+  local target="$2"
+  local url="https://github.com/yvgude/lean-ctx/releases/download/v${version}/lean-ctx-${target}.tar.gz"
+  local hash
+
+  hash="$(
+    nix store prefetch-file --hash-type sha256 --json "$url" |
+      sed -n 's/.*"hash":"\([^"]*\)".*/\1/p'
+  )"
+
+  if [[ -z "$hash" ]]; then
+    echo "failed to prefetch $url" >&2
+    exit 1
+  fi
+
+  SYSTEM_NAME="$system" TARGET_NAME="$target" NEW_HASH="$hash" perl -0pi -e '
+    my $system = $ENV{"SYSTEM_NAME"};
+    my $target = $ENV{"TARGET_NAME"};
+    my $hash = $ENV{"NEW_HASH"};
+    my $re = qr/(\Q$system\E\s*=\s*\{\s*target\s*=\s*"\Q$target\E";\s*hash\s*=\s*")[^"]+(")/;
+    my $count = s/$re/$1$hash$2/s;
+    die "failed to update hash for $system ($target)\n" unless $count == 1;
+  ' "$tmp"
+}
+
+update_hash x86_64-linux x86_64-unknown-linux-musl
+update_hash aarch64-linux aarch64-unknown-linux-musl
+update_hash aarch64-darwin aarch64-apple-darwin
+
+mv "$tmp" "$file"
+trap - EXIT

@@ -15,10 +15,13 @@ in {
 
     xdg.stateFile = let
       templateDir = "noctalia/community-templates/neovim_mini_base16";
+      piTemplateDir = "noctalia/community-templates/pi";
     in {
       "${templateDir}/apply.sh".source = ./noctalia/templates/neovim_mini_base16/apply.sh;
       "${templateDir}/matugen-template.lua".source = ./noctalia/templates/neovim_mini_base16/matugen-template.lua;
       "${templateDir}/template.toml".source = ./noctalia/templates/neovim_mini_base16/template.toml;
+      "${piTemplateDir}/pi-theme.json".source = ./noctalia/templates/pi/pi-theme.json;
+      "${piTemplateDir}/template.toml".source = ./noctalia/templates/pi/template.toml;
     };
 
     programs.niri.settings = {

@@ -104,8 +104,8 @@
           aitools = nix-ai-tools.packages.${system};
         };
       };
-      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       lean-ctx = pkgs.callPackage ./packages/lean-ctx.nix {};
+      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
       nvimPackages =

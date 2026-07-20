@@ -91,7 +91,7 @@ in {
       render-cli
 
       # AV
-      ffmpeg-full
+      # ffmpeg-full
     ]
     ++ aipkgs ++ lib.attrValues mytools ++ [lean-ctx];
   home.sessionVariables = {

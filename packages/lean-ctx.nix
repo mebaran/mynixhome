@@ -15,7 +15,7 @@
     };
     aarch64-darwin = {
       target = "aarch64-apple-darwin";
-      hash = "sha256-K3Sd/fp0p0nIxBHYucGroReCbFXhcedCWTMX6LqOf7M=";
+      hash = "sha256-ukQamOWUkKOkGCYEHJ8SvBjXtLZgETAxvnJpPygMWGE=";
     };
   };
   release = releases.${stdenvNoCC.hostPlatform.system};
