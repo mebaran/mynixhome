@@ -154,13 +154,14 @@
   };
   aliasPlugin = a: p: ''${a} location="file:${p}/${p.pname}.wasm"'';
 in {
-  home.packages = [
-    pkgs.reptyr
-    pkgs.television
-    zellij-adopt
-  ];
+  home.packages =
+    [pkgs.television]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      pkgs.reptyr
+      zellij-adopt
+    ];
 
-  programs.zsh.shellAliases = {
+  programs.zsh.shellAliases = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     zadopt = "zellij-adopt";
     zsteal = "zellij-adopt --terminal";
   };
