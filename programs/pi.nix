@@ -117,36 +117,6 @@
 
       Include command existence checks, auth setup, discovery commands, safe examples, write/dry-run examples, validation commands, and boundaries. Keep API reference details in CLI docs or `references/`, not in the skill body.
     '';
-
-    openai-docs = ''
-      ---
-      name: openai-docs
-      description: Answer or implement work involving OpenAI APIs, Codex, ChatGPT apps, Agents SDK, Responses API, Realtime API, model selection, model migration, or OpenAI prompt upgrades. Use when current OpenAI documentation or Codex behavior matters.
-      ---
-
-      # OpenAI Docs
-
-      Prefer official OpenAI documentation over memory. For current facts, search or fetch official OpenAI sources first, especially for model names, API parameters, SDK behavior, pricing, availability, or Codex customization surfaces.
-
-      ## Source Priority
-
-      Use developer documentation, API reference, and the Codex manual before third-party sources. Restrict fallback web searches to official OpenAI domains unless the user asks for broader research.
-
-      ## Codex Surface Map
-
-      Use the smallest durable surface:
-      - Prompt/thread context for one-off instructions.
-      - `AGENTS.md` for repo conventions.
-      - `.codex/config.toml` for trusted-repo Codex settings.
-      - Global config for personal defaults.
-      - Skill for reusable task workflows.
-      - Plugin for skills plus commands, MCP servers, hooks, or assets.
-      - MCP/app connector for live external data or authorized private workspace data.
-
-      ## Answering Rules
-
-      State when current docs could not be checked. Keep migrations narrow and behavior-preserving. Do not invent model availability, API fields, or pricing.
-    '';
   };
 
   openaiGlobalSkillNames = [
@@ -246,7 +216,7 @@
 
   piSettings = {
     defaultProvider = "openai-codex";
-    defaultModel = "gpt-5.5";
+    defaultModel = "gpt-5.6-sol";
 
     theme = "tokyo-city";
 
@@ -257,7 +227,7 @@
 
     packages = [
       "npm:pi-subagents"
-      "npm:pi-lean-ctx"
+      "npm:pi-sessions"
       "npm:pi-btw"
       "npm:@vanillagreen/pi-web-tools"
       "npm:@vanillagreen/pi-skills-manager"
