@@ -1,5 +1,38 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  ghosttyExe = lib.getExe config.programs.ghostty.package;
+  ghosttyThemed = pkgs.writeShellApplication {
+    name = "ghostty-themed";
+    text = ''
+      theme=TokyoNight
+      theme_dir="''${XDG_CONFIG_HOME:-"$HOME/.config"}/ghostty/themes"
+
+      if [[ -r "$theme_dir/noctalia" ]]; then
+        theme=noctalia
+      fi
+
+      exec ${ghosttyExe} "$@" --theme="$theme"
+    '';
+  };
+  ghosttyThemedExe = lib.getExe ghosttyThemed;
+  firefoxExe = lib.getExe pkgs.firefox;
+  vicinaeExe = lib.getExe pkgs.vicinae;
+in {
+  home.packages = [
+    ghosttyThemed
+    pkgs.vicinae
+  ];
+
   programs.niri.settings = {
+    # Keep Ghostty's single instance alive so +new-window can use native IPC.
+    spawn-at-startup = [
+      {argv = [ghosttyThemedExe "--initial-window=false"];}
+      {argv = [vicinaeExe "server"];}
+    ];
     outputs."HDMI-A-1" = {
       mode = {
         width = 2560;
@@ -32,22 +65,43 @@
         tiled-state = true;
         draw-border-with-background = false;
       }
+      {
+        matches = [{app-id = "com.mitchellh.ghostty";}];
+        default-column-width.proportion = 1.0 / 3.0;
+      }
+      {
+        matches = [{app-id = "firefox";}];
+        default-column-width.proportion = 0.5;
+      }
     ];
+
+    # Allow apps launched by Vicinae to receive focus.
+    debug.honor-xdg-activation-with-invalid-serial = [];
 
     binds = {
       # System & overview
+      "Mod+Space" = {
+        repeat = false;
+        hotkey-overlay.title = "Application Launcher";
+        action.spawn = [vicinaeExe "toggle"];
+      };
       "Mod+D" = {
         repeat = false;
         action.toggle-overview = [];
       };
       "Mod+Tab" = {
         repeat = false;
-        action.toggle-overview = [];
+        hotkey-overlay.title = "Switch Windows";
+        action.spawn = [vicinaeExe "vicinae://launch/wm/switch-windows?toggle=true"];
       };
       "Mod+Shift+Slash".action.show-hotkey-overlay = [];
       "Mod+T" = {
-        hotkey-overlay.title = "Open Terminal";
-        action.spawn = "ghostty";
+        hotkey-overlay.title = "Open Terminal (1/3 width)";
+        action.spawn = [ghosttyThemedExe "+new-window"];
+      };
+      "Mod+B" = {
+        hotkey-overlay.title = "Open Browser (1/2 width)";
+        action.spawn = [firefoxExe "--new-window" "about:blank"];
       };
 
       # Shell-independent lock; COSMIC is configured in mynixsys.

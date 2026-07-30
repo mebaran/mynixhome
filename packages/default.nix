@@ -9,7 +9,7 @@
   aipkgs = with aitools; [
     # codex-acp
     hunk
-    pi
+    skills
     spec-kit
     workmux
     vix

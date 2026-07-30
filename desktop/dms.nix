@@ -49,10 +49,6 @@
     };
 
     programs.niri.settings.binds = {
-      "Mod+Space" = {
-        hotkey-overlay.title = "Application Launcher";
-        action.spawn = ["dms" "ipc" "call" "spotlight" "toggle"];
-      };
       "Mod+V" = {
         hotkey-overlay.title = "Clipboard Manager";
         action.spawn = ["dms" "ipc" "call" "clipboard" "toggle"];

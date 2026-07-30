@@ -6,10 +6,6 @@
   ...
 }: let
   # Pi is Nix-managed; Pi packages remain mutable/updateable under ~/.pi/agent.
-  piPkg = aitools.pi;
-  pi = lib.getExe piPkg;
-  npx = "${pkgs.nodejs}/bin/npx";
-
   globalSkills = {
     skill-creator = ''
       ---
@@ -227,6 +223,8 @@
 
     packages = [
       "npm:pi-subagents"
+      "npm:@narumitw/pi-worktree"
+      "npm:pi-lens"
       "npm:pi-sessions"
       "npm:pi-btw"
       "npm:@vanillagreen/pi-web-tools"
@@ -247,31 +245,79 @@
       exaAdvancedEnabled = true;
     };
   };
-
-  piSkillsUpdate = pkgs.writeShellApplication {
-    name = "pi-skills-update";
-    text = ''
-      ${npx} --yes skills update
-      ${pi} update --extensions
-    '';
-  };
-
-  piSkillsCheck = pkgs.writeShellApplication {
-    name = "pi-skills-check";
-    text = ''
-      ${npx} --yes skills check
-    '';
-  };
 in {
-  home.packages = [
-    piPkg
-    piSkillsUpdate
-    piSkillsCheck
+  programs.pi-coding-agent = {
+    enable = true;
+    package = aitools.pi;
+    settings = piSettings;
+  };
+
+  # Language servers used by Nixvim and pi-lens, plus Java/JDTLS.
+  home.packages = with pkgs; [
+    biome
+    emmet-language-server
+    gopls
+    jdk21
+    jdt-language-server
+    nixd
+    ruff
+    ty
+    typescript-language-server
   ];
+
+  # Keep LSP binaries declarative instead of allowing pi-lens to download them.
+  home.sessionVariables.PI_LENS_DISABLE_LSP_INSTALL = "1";
+
   home.file =
     {
-      ".pi/agent/settings.json".text = builtins.toJSON piSettings;
+      ".pi/agent/extensions/env-theme.ts".source = ./pi/extensions/env-theme.ts;
       ".pi/agent/themes/tokyo-city.json".text = builtins.toJSON piTheme;
+
+      # Start conservatively: retain diagnostics and navigation, but do not let
+      # pi-lens mutate files outside Pi's explicit edit/write tool calls.
+      ".pi-lens/config.json".text = builtins.toJSON {
+        format.enabled = false;
+        autofix.enabled = false;
+        actionableWarnings.autoFix.enabled = false;
+      };
+
+      # pi-lens has built-ins for TypeScript, Python/ty, Go, Java/JDTLS, and
+      # Nix/nixd. Add the two remaining Nixvim servers explicitly.
+      ".pi-lens/lsp.json".text = builtins.toJSON {
+        servers = {
+          emmet = {
+            name = "Emmet Language Server";
+            command = "emmet-language-server";
+            args = ["--stdio"];
+            extensions = [
+              ".css"
+              ".html"
+              ".js"
+              ".jsx"
+              ".scss"
+              ".ts"
+              ".tsx"
+            ];
+            rootMarkers = [
+              "package.json"
+              ".git"
+            ];
+          };
+          ruff = {
+            name = "Ruff Language Server";
+            command = "ruff";
+            args = ["server"];
+            extensions = [
+              ".py"
+              ".pyi"
+            ];
+            rootMarkers = [
+              "pyproject.toml"
+              ".git"
+            ];
+          };
+        };
+      };
     }
     // globalSkillFiles
     // openaiGlobalSkillFiles;

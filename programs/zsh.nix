@@ -30,6 +30,12 @@
         if [[ -f "$HOME/.zshkeys" ]]; then
           source "$HOME/.zshkeys"
         fi
+
+        # The Pi env-theme extension falls back to tokyo-city when this is
+        # unset or names a theme that Pi did not discover.
+        if [[ -z "''${PI_THEME:-}" && -r "$HOME/.pi/agent/themes/noctalia.json" ]]; then
+          export PI_THEME=noctalia
+        fi
       '';
       initContent = ''
         aws-login() {

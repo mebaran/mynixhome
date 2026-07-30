@@ -1,7 +1,7 @@
-[catalog.pi]
-name = "pi (coding agent)"
+[catalog.pi-agent]
+name = "Pi Agent"
 category = "terminal"
 
-[templates.pi]
+[templates.pi-agent]
 input_path = "pi-theme.json"
-output_path = "$XDG_CACHE_HOME/noctalia/pi-theme.json"
+output_path = "~/.pi/agent/themes/noctalia.json"

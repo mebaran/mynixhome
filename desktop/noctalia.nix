@@ -15,13 +15,19 @@ in {
 
     xdg.stateFile = let
       templateDir = "noctalia/community-templates/neovim_mini_base16";
-      piTemplateDir = "noctalia/community-templates/pi";
+      piTemplateDir = "noctalia/community-templates/pi-agent";
     in {
       "${templateDir}/apply.sh".source = ./noctalia/templates/neovim_mini_base16/apply.sh;
       "${templateDir}/matugen-template.lua".source = ./noctalia/templates/neovim_mini_base16/matugen-template.lua;
       "${templateDir}/template.toml".source = ./noctalia/templates/neovim_mini_base16/template.toml;
-      "${piTemplateDir}/pi-theme.json".source = ./noctalia/templates/pi/pi-theme.json;
-      "${piTemplateDir}/template.toml".source = ./noctalia/templates/pi/template.toml;
+      "${piTemplateDir}/pi-theme.json" = {
+        source = ./noctalia/templates/pi/pi-theme.json;
+        force = true;
+      };
+      "${piTemplateDir}/template.toml" = {
+        source = ./noctalia/templates/pi/template.toml;
+        force = true;
+      };
     };
 
     programs.niri.settings = {
@@ -40,10 +46,7 @@ in {
         }
       ];
 
-      debug.honor-xdg-activation-with-invalid-serial = [];
-
       binds = {
-        "Mod+Space".action.spawn-sh = noctaliaMsg ["panel-toggle" "launcher"];
         "Mod+S".action.spawn-sh = noctaliaMsg ["panel-toggle" "control-center"];
         "Mod+Comma".action.spawn-sh = noctaliaMsg ["settings-toggle"];
         "Mod+V".action.spawn-sh = noctaliaMsg ["panel-toggle" "clipboard"];
