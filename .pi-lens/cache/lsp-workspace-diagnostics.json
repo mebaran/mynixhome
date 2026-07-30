@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "entries": {
+    "/Users/markbaran/nix/mynixhome/programs/pi.nix": {
+      "diagnostics": [],
+      "count": 0,
+      "mtimeMs": 1785374836078.725,
+      "scannedAt": 1785374864644,
+      "scopeKey": "primary|"
+    },
+    "/Users/markbaran/nix/mynixhome/.pi-lens/lsp.json": {
+      "diagnostics": [],
+      "count": 0,
+      "mtimeMs": 1785374841486.7642,
+      "scannedAt": 1785374866864,
+      "scopeKey": "primary|"
+    },
+    "/Users/markbaran/nix/mynixhome/home.nix": {
+      "diagnostics": [
+        {
+          "code": "sema-unused-def-lambda-noarg-formal",
+          "message": "attribute `config` of argument is not used",
+          "range": {
+            "end": {
+              "character": 8,
+              "line": 2
+            },
+            "start": {
+              "character": 2,
+              "line": 2
+            }
+          },
+          "relatedInformation": [],
+          "severity": 2,
+          "source": "nixf",
+          "tags": [
+            1
+          ]
+        }
+      ],
+      "count": 1,
+      "mtimeMs": 1783406895598.059,
+      "scannedAt": 1785375124616,
+      "scopeKey": "primary|"
+    }
+  }
+}

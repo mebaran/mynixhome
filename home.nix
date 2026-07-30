@@ -1,6 +1,5 @@
 {
   aitools,
-  config,
   pkgs,
   username,
   homeDirectory,
