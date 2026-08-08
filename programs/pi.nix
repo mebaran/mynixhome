@@ -221,6 +221,45 @@
 
     enableSkillCommands = true;
 
+    subagents.agentOverrides = {
+      scout = {
+        model = "openai-codex/gpt-5.6-luna";
+        thinking = "low";
+      };
+      delegate = {
+        model = "openai-codex/gpt-5.6-luna";
+        thinking = "low";
+      };
+      "context-builder" = {
+        model = "openai-codex/gpt-5.6-terra";
+        thinking = "medium";
+      };
+      researcher = {
+        model = "openai-codex/gpt-5.6-terra";
+        thinking = "medium";
+      };
+      planner = {
+        model = "openai-codex/gpt-5.6-terra";
+        thinking = "medium";
+      };
+      worker = {
+        model = "openai-codex/gpt-5.6-terra";
+        thinking = "medium";
+      };
+      reviewer = {
+        model = "openai-codex/gpt-5.6-terra";
+        thinking = "medium";
+      };
+      oracle = {
+        model = "openai-codex/gpt-5.6-sol";
+        thinking = "high";
+      };
+      advisor = {
+        model = "openai-codex/gpt-5.6-sol";
+        thinking = "high";
+      };
+    };
+
     packages = [
       "npm:pi-subagents"
       "npm:@narumitw/pi-worktree"

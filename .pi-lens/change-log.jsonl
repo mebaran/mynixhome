@@ -1,2 +1,0 @@
-{"seq":3,"timestamp":"2026-07-30T01:27:21.489Z","sessionId":"019fb09e-8396-7979-946e-6afa9e045aca","turnIndex":15,"source":"agent-write","filePath":"/Users/markbaran/nix/mynixhome/.pi-lens/lsp.json","fileSeq":1,"changedRange":{"start":1,"end":17}}
-{"seq":4,"timestamp":"2026-07-30T01:32:59.451Z","sessionId":"019fb0a5-cbf3-72ef-824a-c702497d3fb8","turnIndex":7,"source":"agent-edit","filePath":"/Users/markbaran/nix/mynixhome/home.nix","fileSeq":1,"changedRange":{"start":3,"end":3}}
