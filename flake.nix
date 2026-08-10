@@ -104,7 +104,6 @@
           aitools = nix-ai-tools.packages.${system};
         };
       };
-      lean-ctx = pkgs.callPackage ./packages/lean-ctx.nix {};
       skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
@@ -112,7 +111,6 @@
         {
           nvim = allLangNvim;
           nvim-all = allLangNvim;
-          inherit lean-ctx;
         }
         // lib.mapAttrs' (name: value:
           lib.nameValuePair "nvim-${name}" (baseNvim.extend value))

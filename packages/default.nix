@@ -5,7 +5,6 @@
   mytools,
   ...
 }: let
-  lean-ctx = pkgs.callPackage ./lean-ctx.nix {};
   aipkgs = with aitools; [
     # codex-acp
     hunk
@@ -84,7 +83,7 @@ in {
       # AV
       # ffmpeg-full
     ]
-    ++ aipkgs ++ lib.attrValues mytools ++ [lean-ctx];
+    ++ aipkgs ++ lib.attrValues mytools;
   home.sessionVariables = {
     USQL_PAGER = "pspg";
   };
