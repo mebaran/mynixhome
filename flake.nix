@@ -26,21 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dms-plugin-registry = {
-      url = "github:AvengeMedia/dms-plugin-registry";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,9 +53,6 @@
     home-manager,
     nixvim,
     stylix,
-    dms,
-    dms-plugin-registry,
-    niri,
     noctalia,
     nix-ai-tools,
     mytools,
@@ -130,11 +112,7 @@
     desktopModules =
       cliModules
       ++ [
-        niri.homeModules.config
         noctalia.homeModules.default
-        dms.homeModules.dank-material-shell
-        dms.homeModules.niri
-        dms-plugin-registry.homeModules.default
         ./desktop
       ];
     homes = {
@@ -177,7 +155,6 @@
           inherit skillSources;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
-          niriPackage = niri.packages.${system}.niri-unstable;
         };
       };
       devShells.${system}.default = pkgs.mkShell {
