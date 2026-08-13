@@ -188,7 +188,7 @@ in {
         }
         autolock location="file:${zellij-autolock}/${zellij-autolock.pname}.wasm" {
           is_enabled true
-          triggers "nvim|vim|hx|git|lazygit|fzf|tv|zoxide|atuin|yazi|less|man|ssh|pi|codex|opencode"
+          triggers "nvim|vim|hx|git|lazygit|fzf|tv|atuin|yazi|less|man|ssh|pi|codex|opencode"
           reaction_seconds "0.2"
         }
       }

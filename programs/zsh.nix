@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  # 25.03.19 is the last known-good release; newer snapshots regress the
+  # interactive completion behavior this configuration relies on.
+  zshAutocomplete = pkgs.zsh-autocomplete.overrideAttrs (_: {
+    version = "25.03.19";
+    src = pkgs.fetchurl {
+      url = "https://github.com/marlonrichert/zsh-autocomplete/archive/a76f26ae25528e76ee53df98ad38fbacdf89fd2e.tar.gz";
+      hash = "sha256-oBSDpCLCqsg7wvvrcImzYILWxA9sYZ12/Bt5RxfSPZk=";
+    };
+  });
+in {
   programs = {
     zsh = {
       enable = true;
@@ -14,7 +24,7 @@
       plugins = with pkgs; [
         {
           name = "zsh-autocomplete";
-          src = "${zsh-autocomplete}/share/zsh-autocomplete";
+          src = "${zshAutocomplete}/share/zsh-autocomplete";
         }
         {
           name = "agkozak-zsh-prompt";
@@ -86,12 +96,27 @@
       '';
     };
 
-    # setup zsh autocomplete plugin
-    zoxide = {
+    atuin = {
       enable = true;
-      options = [
-        "--cmd d"
-      ];
+      enableZshIntegration = true;
+      # Keep normal Up-arrow history; Atuin owns only Ctrl-R.
+      flags = ["--disable-up-arrow"];
+      settings = {
+        # Start local-only. Sync can be enabled later after explicitly logging in.
+        auto_sync = false;
+        update_check = false;
+
+        search_mode = "fuzzy";
+        filter_mode = "global";
+        workspaces = true;
+
+        style = "compact";
+        inline_height = 20;
+        show_preview = true;
+
+        # Put the selected command on the prompt for review rather than running it.
+        enter_accept = false;
+      };
     };
 
     z-lua = {

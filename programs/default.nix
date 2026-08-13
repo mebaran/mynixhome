@@ -90,6 +90,8 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      # Atuin owns Ctrl-R; retain fzf's file and directory widgets.
+      historyWidget.command = "";
     };
 
     delta = {
