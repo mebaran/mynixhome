@@ -15,6 +15,14 @@ in {
       enableVteIntegration = true;
       enableCompletion = false;
       syntaxHighlighting.enable = true;
+      localVariables.DIRSTACKSIZE = 30;
+      setOptions = [
+        "AUTO_PUSHD"
+        "PUSHD_IGNORE_DUPS"
+        "PUSHD_SILENT"
+        "HIST_VERIFY"
+        "HIST_REDUCE_BLANKS"
+      ];
       history = {
         extended = true;
         append = true;
@@ -88,6 +96,9 @@ in {
         zstyle ':autocomplete:*' min-input 999
         bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
         bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+        # Expand bang history on Space so expansions are visible before execution.
+        bindkey ' ' magic-space
 
         # AGKOZAK Config
         export AGKOZAK_BLANK_LINES=1

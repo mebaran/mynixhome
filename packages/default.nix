@@ -66,6 +66,7 @@ in {
 
       # productivity
       glow # markdown previewer in terminal
+      just # project command runner and executable runbooks
 
       # AI and MCP
       nix-update
