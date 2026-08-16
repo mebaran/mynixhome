@@ -17,20 +17,22 @@ jobs:
 
       - uses: DeterminateSystems/nix-installer-action@v17
 
-      - name: Update skills and Home Manager inputs
+      - name: Update local packages, skills, and Home Manager inputs
         run: make update-weekly
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Format Nix files
-        run: nix run nixpkgs#alejandra -- flake.nix packages/skill-sources.nix programs/pi.nix programs/skills.nix
+        run: nix run nixpkgs#alejandra -- flake.nix packages/*.nix programs/pi.nix programs/skills.nix
 
       - name: Create pull request
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: automation/update-home-manager
-          commit-message: "Update Home Manager inputs and Pi skill sources"
-          title: "Update Home Manager inputs and Pi skill sources"
-          body: "Automated weekly update. Pi skill source pins are updated before the Home Manager flake inputs."
+          commit-message: "Update Home Manager dependencies"
+          title: "Update Home Manager dependencies"
+          body: "Automated weekly update of local packages, Pi skill source pins, and Home Manager flake inputs."
           labels: dependencies
 
       - name: Merge PR immediately

@@ -13,6 +13,9 @@
     workmux
     vix
   ];
+  localPackages = lib.attrValues {
+    dbxcli = pkgs.callPackage ./dbxcli.nix {};
+  };
 in {
   # Packages that should be installed to the user profile.
   home.packages = with pkgs;
@@ -84,7 +87,9 @@ in {
       # AV
       # ffmpeg-full
     ]
-    ++ aipkgs ++ lib.attrValues mytools;
+    ++ localPackages
+    ++ aipkgs
+    ++ lib.attrValues mytools;
   home.sessionVariables = {
     USQL_PAGER = "pspg";
   };

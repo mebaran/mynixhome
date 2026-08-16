@@ -87,6 +87,7 @@
         };
       };
       skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
+      dbxcli = pkgs.callPackage ./packages/dbxcli.nix {};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
       nvimPackages =
@@ -98,7 +99,7 @@
           lib.nameValuePair "nvim-${name}" (baseNvim.extend value))
         nvimLangs;
     in {
-      packages.${system} = nvimPackages // skillSources;
+      packages.${system} = nvimPackages // skillSources // {inherit dbxcli;};
       checks.${system}.nvim = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
       devShells.${system} = lib.mapAttrs' (name: value:
         lib.nameValuePair name (pkgs.mkShell {buildInputs = [value];}))
