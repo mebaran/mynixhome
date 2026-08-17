@@ -9,9 +9,7 @@
     # codex-acp
     hunk
     skills
-    spec-kit
     workmux
-    vix
   ];
   localPackages = lib.attrValues {
     dbxcli = pkgs.callPackage ./dbxcli.nix {};
@@ -25,6 +23,8 @@ in {
       xz
       unzip
       p7zip
+      gnutar
+      zstd
 
       # utils
       yq-go # yaml processor https://github.com/mikefarah/yq
@@ -50,15 +50,14 @@ in {
       file
       gawk
       gnused
-      gnutar
       imagemagick
       openssl
       psutils
       rage
       which
-      zstd
       miller
       dconf
+      nix-update
 
       # nix related
       #
@@ -71,20 +70,18 @@ in {
       glow # markdown previewer in terminal
       just # project command runner and executable runbooks
 
-      # AI and MCP
-      nix-update
-      repomix
-
       # JavaScript and TypeScript runtimes
       deno
       nodejs
 
       # cloud
+      # awscli2 installed via home manager
       google-cloud-sdk
       opentofu
       render-cli
 
       # AV
+      mpv
       # ffmpeg-full
     ]
     ++ localPackages
