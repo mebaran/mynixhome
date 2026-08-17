@@ -1,8 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./niri-base.nix
     ./noctalia.nix
   ];
+
+  home.packages = [pkgs.file-roller];
 
   programs.ghostty = {
     enable = true;
