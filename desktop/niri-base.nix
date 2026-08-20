@@ -105,10 +105,10 @@ in {
           spawn = [firefoxExe "--new-window" "about:blank"];
         };
 
-        # Shell-independent lock; COSMIC is configured in mynixsys.
+        # Noctalia native lock screen.
         "Mod+Alt+L" = {
           _props.hotkey-overlay-title = "Lock Screen";
-          spawn = ["loginctl" "lock-session"];
+          spawn = ["noctalia" "msg" "session" "lock"];
         };
         "Mod+Shift+E".quit = {};
 

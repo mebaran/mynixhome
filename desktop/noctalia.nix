@@ -10,6 +10,32 @@ in {
   programs.noctalia = {
     enable = true;
     systemd.enable = false;
+
+    settings = {
+      shell.polkit_agent = true;
+
+      lockscreen.enabled = true;
+
+      idle = {
+        behavior_order = [
+          "lock"
+          "screen-off"
+        ];
+        pre_action_fade_seconds = 2;
+
+        behavior.lock = {
+          enabled = true;
+          timeout = 600;
+          action = "lock";
+        };
+
+        behavior."screen-off" = {
+          enabled = true;
+          timeout = 660;
+          action = "screen_off";
+        };
+      };
+    };
   };
 
   xdg.stateFile = let
