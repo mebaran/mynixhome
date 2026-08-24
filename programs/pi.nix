@@ -268,6 +268,7 @@
       "npm:pi-btw"
       "npm:@vanillagreen/pi-web-tools"
       "npm:@vanillagreen/pi-skills-manager"
+      "npm:@dietrichgebert/ponytail"
     ];
 
     vstack.extensionManager.config."@vanillagreen/pi-web-tools" = {

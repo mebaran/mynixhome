@@ -6,6 +6,7 @@
   ...
 }: let
   aipkgs = with aitools; [
+    bb-app
     # codex-acp
     hunk
     skills
@@ -33,6 +34,7 @@ in {
 
       # networking tools
       curl
+      eternal-terminal
       dnsutils # `dig` + `nslookup`
       ldns # replacement of `dig`, it provide the command `drill`
       socat # replacement of openbsd-netcat
