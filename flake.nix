@@ -113,7 +113,6 @@
     desktopModules =
       cliModules
       ++ [
-        noctalia.homeModules.default
         ./desktop
       ];
     homes = {
@@ -156,6 +155,7 @@
           inherit skillSources;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
+          noctaliaPackage = noctalia.packages.${system}.default;
         };
       };
       devShells.${system}.default = pkgs.mkShell {

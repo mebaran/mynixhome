@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  noctaliaPackage,
   pkgs,
   ...
 }: let
@@ -9,6 +10,7 @@
 in {
   programs.noctalia = {
     enable = true;
+    package = noctaliaPackage;
     systemd.enable = false;
 
     settings = {
