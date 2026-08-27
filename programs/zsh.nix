@@ -109,6 +109,7 @@ in {
 
     atuin = {
       enable = true;
+      enableNushellIntegration = true;
       enableZshIntegration = true;
       # Keep normal Up-arrow history; Atuin owns only Ctrl-R.
       flags = ["--disable-up-arrow"];

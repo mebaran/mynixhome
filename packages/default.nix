@@ -6,7 +6,6 @@
   ...
 }: let
   aipkgs = with aitools; [
-    bb-app
     # codex-acp
     hunk
     skills

@@ -1,4 +1,8 @@
-{aitools, ...}: {
+{
+  aitools,
+  pkgs,
+  ...
+}: {
   xdg.configFile."direnv/direnvrc".text = ''
     use_aws_profile() {
       local profile="''${1:-''${AWS_PROFILE:-default}}"
@@ -69,6 +73,7 @@
 
     direnv = {
       enable = true;
+      enableNushellIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
@@ -155,7 +160,28 @@
 
     nix-your-shell = {
       enable = true;
+      enableNushellIntegration = true;
       enableZshIntegration = true;
+    };
+
+    nushell = {
+      enable = true;
+      plugins = with pkgs.nushellPlugins; [
+        formats
+        gstat
+        polars
+        query
+      ];
+      extraConfig = ''
+        use std/dirs shells-aliases *
+        use std/dirs *
+        use std/clip *
+        source ${
+          pkgs.runCommand "z-lua.nu" {} ''
+            ${pkgs.z-lua}/bin/z --init nushell enhanced > $out
+          ''
+        }
+      '';
     };
 
     pgcli = {

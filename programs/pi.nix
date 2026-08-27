@@ -264,6 +264,7 @@
     packages = [
       "npm:pi-subagents"
       "npm:@narumitw/pi-worktree"
+      "npm:pi-hashline-readmap"
       "npm:pi-lens"
       "npm:pi-sessions"
       "npm:pi-btw"
