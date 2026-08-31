@@ -267,6 +267,7 @@
       "npm:pi-hashline-readmap"
       "npm:pi-lens"
       "npm:pi-sessions"
+      "npm:pi-process-monitor@2"
       "npm:pi-btw"
       "npm:@vanillagreen/pi-web-tools"
       "npm:@vanillagreen/pi-skills-manager"
@@ -313,6 +314,7 @@ in {
   home.file =
     {
       ".pi/agent/extensions/env-theme.ts".source = ./pi/extensions/env-theme.ts;
+      ".pi/agent/extensions/process-monitor.ts".source = ./pi/extensions/process-monitor.ts;
       ".pi/agent/themes/tokyo-city.json".text = builtins.toJSON piTheme;
 
       # Start conservatively: retain diagnostics and navigation, but do not let
