@@ -5,16 +5,16 @@
 }:
 buildGoModule rec {
   pname = "dbxcli";
-  version = "3.7.2";
+  version = "3.7.3";
 
   src = fetchFromGitHub {
     owner = "dropbox";
     repo = "dbxcli";
     tag = "v${version}";
-    hash = "sha256-KgsR6YRHzFHYXjfb/rRwxVlMKoUX/cfh8p0ULE7c2+o=";
+    hash = "sha256-B3TemUS9tHR5qJWGBBdlXVme9+Ix/u6IwsKYtZUVhcs=";
   };
 
-  vendorHash = "sha256-R7IHN9ycoFhFOHHay4xY2xiquJod711HneorsdbNDaI=";
+  vendorHash = "sha256-ArD29fOqsXi5NZczrlM9wuShziFg1MdCB22tQNlpB8I=";
 
   ldflags = [
     "-s"
