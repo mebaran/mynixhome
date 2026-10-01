@@ -7,6 +7,7 @@
 }: let
   aipkgs = with aitools; [
     # codex-acp
+    claude-code
     hunk
     skills
     workmux
