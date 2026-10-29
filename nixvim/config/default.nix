@@ -32,6 +32,7 @@
         "friendly-snippets"
         "blink.cmp"
         "snacks.nvim"
+        "codecompanion.nvim" # doc/troubleshooting.md collides with render-markdown.nvim
       ];
     };
   };
