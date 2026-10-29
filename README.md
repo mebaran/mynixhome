@@ -2,7 +2,7 @@
 
 ## Build/Test Commands
 - `nix flake check` - Validate flake configuration
-- `home-manager switch --flake .#<username>` - Apply configuration (username: mebaran, markbaran, mbaran)
+- `home-manager switch --flake .#<configName>` - Apply configuration (configName: mebaran, markbaran, mbaran, mebaran@liquid-omen)
 - `nix develop` - Enter development shell with nixlang LSP
 - `nix flake update` - Update flake inputs
 

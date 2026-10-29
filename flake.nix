@@ -121,18 +121,29 @@
         username = "mebaran";
         homeDirectory = "/home/${username}";
         modules = desktopModules;
+        configName = username;
       };
       mac = rec {
         system = "aarch64-darwin";
         username = "markbaran";
         homeDirectory = "/Users/${username}";
         modules = cliModules;
+        configName = username;
       };
       work-linux = rec {
         system = "x86_64-linux";
         username = "mbaran";
         homeDirectory = "/home/${username}";
         modules = cliModules;
+        configName = username;
+      };
+      # Headless dev microvm defined in mynixsys
+      liquid-omen = rec {
+        system = "x86_64-linux";
+        username = "mebaran";
+        homeDirectory = "/home/${username}";
+        modules = cliModules;
+        configName = "${username}@liquid-omen";
       };
     };
     homeMaker = {
@@ -140,6 +151,7 @@
       username,
       homeDirectory,
       modules,
+      configName,
     }: let
       pkgs = import nixpkgs {
         inherit system;
@@ -148,7 +160,7 @@
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
       formatter.${system} = pkgs.alejandra;
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${configName} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs modules;
         extraSpecialArgs = {
           inherit system username homeDirectory;
