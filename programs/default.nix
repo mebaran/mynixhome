@@ -130,11 +130,6 @@
       enable = true;
     };
 
-    herdr = {
-      enable = true;
-      package = aitools.herdr;
-    };
-
     jujutsu.enable = true;
 
     lazysql.enable = true;

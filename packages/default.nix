@@ -10,7 +10,6 @@
     claude-code
     hunk
     skills
-    workmux
   ];
   localPackages = lib.attrValues {
     dbxcli = pkgs.callPackage ./dbxcli.nix {};
