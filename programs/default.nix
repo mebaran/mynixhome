@@ -45,7 +45,6 @@
   imports = [
     ./pi.nix
     ./python.nix
-    ./ssh.nix
     ./tmux.nix
     ./yazi.nix
     ./zellij
@@ -140,6 +139,12 @@
     opencode = {
       enable = true;
       package = aitools.opencode;
+    };
+
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      settings."*".AddKeysToAgent = "yes";
     };
 
     keychain = {

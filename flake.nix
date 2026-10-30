@@ -137,14 +137,6 @@
         modules = cliModules;
         configName = username;
       };
-      # Headless dev microvm defined in mynixsys
-      liquid-omen = rec {
-        system = "x86_64-linux";
-        username = "mebaran";
-        homeDirectory = "/home/${username}";
-        modules = cliModules;
-        configName = "${username}@liquid-omen";
-      };
     };
     homeMaker = {
       system,
