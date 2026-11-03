@@ -34,6 +34,7 @@ in {
       # networking tools
       curl
       eternal-terminal
+      mosh
       dnsutils # `dig` + `nslookup`
       ldns # replacement of `dig`, it provide the command `drill`
       socat # replacement of openbsd-netcat

@@ -45,6 +45,11 @@
       url = "github:mebaran/mytools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    paseo = {
+      url = "github:getpaseo/paseo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -56,6 +61,7 @@
     noctalia,
     nix-ai-tools,
     mytools,
+    paseo,
     ...
   }: let
     lib = nixpkgs.lib;
@@ -159,6 +165,7 @@
           inherit skillSources;
           aitools = nix-ai-tools.packages.${system};
           mytools = mytools.packages.${system};
+          paseo = paseo.packages.${system};
           noctaliaPackage = noctalia.packages.${system}.default;
         };
       };

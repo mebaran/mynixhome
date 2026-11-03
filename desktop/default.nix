@@ -2,6 +2,7 @@
   imports = [
     ./niri-base.nix
     ./noctalia.nix
+    ./paseo.nix
   ];
 
   home.packages = [pkgs.file-roller];
