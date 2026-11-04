@@ -1,17 +1,6 @@
 {
   description = "MEB Home Manager";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://numtide.cachix.org"
-      "https://noctalia.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-    ];
-  };
-
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";

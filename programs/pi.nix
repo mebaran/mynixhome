@@ -212,7 +212,7 @@
 
   piSettings = {
     defaultProvider = "openai-codex";
-    defaultModel = "gpt-5.6-sol";
+    defaultModel = "gpt-6.1-sol";
     defaultTools = ["read" "write" "edit" "bash" "grep" "find" "ls"];
 
     theme = "tokyo-city";
