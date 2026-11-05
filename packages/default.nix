@@ -58,7 +58,6 @@ in {
       rage
       which
       miller
-      dconf
       nix-update
 
       # nix related
@@ -81,10 +80,6 @@ in {
       google-cloud-sdk
       opentofu
       render-cli
-
-      # AV
-      mpv
-      # ffmpeg-full
     ]
     ++ localPackages
     ++ aipkgs

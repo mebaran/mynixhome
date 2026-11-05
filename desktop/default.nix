@@ -5,7 +5,7 @@
     ./paseo.nix
   ];
 
-  home.packages = [pkgs.file-roller];
+  home.packages = with pkgs; [dconf file-roller mpv];
 
   programs.ghostty = {
     enable = true;

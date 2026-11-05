@@ -118,6 +118,13 @@
         modules = desktopModules;
         configName = username;
       };
+      wsl = rec {
+        system = "x86_64-linux";
+        username = "mebaran";
+        homeDirectory = "/home/${username}";
+        modules = cliModules;
+        configName = "${username}@wsl";
+      };
       mac = rec {
         system = "aarch64-darwin";
         username = "markbaran";
