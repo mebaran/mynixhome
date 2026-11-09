@@ -140,6 +140,43 @@
         configName = username;
       };
     };
+    homeArgs = {
+      pkgs,
+      system,
+      username,
+      homeDirectory,
+    }: {
+      inherit system username homeDirectory;
+      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
+      aitools = nix-ai-tools.packages.${system};
+      mytools = mytools.packages.${system};
+      paseo = paseo.packages.${system};
+      noctaliaPackage = noctalia.packages.${system}.default;
+    };
+    # NixOS module: manage this home config as part of `nh os switch`.
+    nixosHome = {
+      username,
+      modules,
+    }: {pkgs, ...}: {
+      imports = [home-manager.nixosModules.home-manager];
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "hm-bak";
+        extraSpecialArgs = homeArgs {
+          inherit pkgs username;
+          system = pkgs.stdenv.hostPlatform.system;
+          homeDirectory = "/home/${username}";
+        };
+        users.${username} = {
+          imports = modules;
+          # stylix overlays set HM nixpkgs options, which useGlobalPkgs forbids.
+          stylix.overlays.enable = false;
+          # Rebuild the whole system against the local, unpushed home checkout.
+          programs.zsh.shellAliases.nhs = "nh os switch ~/nix/mynixsys -- --override-input mynixhome ~/nix/mynixhome";
+        };
+      };
+    };
     homeMaker = {
       system,
       username,
@@ -150,20 +187,12 @@
       pkgs = import nixpkgs {
         inherit system;
       };
-      skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
     in {
       packages.${system}.default = home-manager.packages.${system}.default;
       formatter.${system} = pkgs.alejandra;
       homeConfigurations.${configName} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs modules;
-        extraSpecialArgs = {
-          inherit system username homeDirectory;
-          inherit skillSources;
-          aitools = nix-ai-tools.packages.${system};
-          mytools = mytools.packages.${system};
-          paseo = paseo.packages.${system};
-          noctaliaPackage = noctalia.packages.${system}.default;
-        };
+        extraSpecialArgs = homeArgs {inherit pkgs system username homeDirectory;};
       };
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
@@ -175,5 +204,10 @@
     homeConfigs = lib.mapAttrs (k: v: homeMaker v) homes;
     nvimConfigs = lib.genAttrs nvimSystems nvimOutputsFor;
   in
-    lib.foldl lib.recursiveUpdate {} (lib.attrValues (homeConfigs // nvimConfigs));
+    lib.foldl lib.recursiveUpdate {
+      nixosModules.desktop = nixosHome {
+        username = "mebaran";
+        modules = desktopModules;
+      };
+    } (lib.attrValues (homeConfigs // nvimConfigs));
 }
