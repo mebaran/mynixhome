@@ -209,5 +209,9 @@
         username = "mebaran";
         modules = desktopModules;
       };
+      nixosModules.cli = nixosHome {
+        username = "mebaran";
+        modules = cliModules;
+      };
     } (lib.attrValues (homeConfigs // nvimConfigs));
 }
