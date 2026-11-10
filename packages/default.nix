@@ -27,8 +27,8 @@ in {
       zstd
 
       # shared libs needed by nushell plugins (e.g. gstat)
-      libgit2.lib
-      zstd.out # libzstd
+      libgit2
+      zstd 
 
       # utils
       yq-go # yaml processor https://github.com/mikefarah/yq
