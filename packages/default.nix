@@ -81,7 +81,7 @@ in {
 
       # cloud
       # awscli2 installed via home manager
-      google-cloud-sdk
+      # google-cloud-sdk  # disabled: not needed
       opentofu
       render-cli
     ]

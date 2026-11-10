@@ -123,7 +123,7 @@
         username = "mebaran";
         homeDirectory = "/home/${username}";
         modules = cliModules;
-        configName = "${username}@wsl";
+        configName = "${username}@nixos-wsl";
       };
       mac = rec {
         system = "aarch64-darwin";

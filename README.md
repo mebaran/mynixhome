@@ -2,12 +2,12 @@
 
 ## Build/Test Commands
 - `nix flake check` - Validate flake configuration
-- `home-manager switch --flake .#<configName>` - Apply configuration (configName: mebaran, mebaran@wsl, markbaran, mbaran)
+- `home-manager switch --flake .#<configName>` - Apply configuration (configName: mebaran, mebaran@nixos-wsl, markbaran, mbaran)
 - `nix develop` - Enter development shell with nixlang LSP
 - `nix flake update` - Update flake inputs
 
 ## WSL Profiles
-- `mebaran@wsl` and `mbaran` use the shared CLI-only modules: no desktop apps or Paseo service.
+- `mebaran@nixos-wsl` and `mbaran` use the shared CLI-only modules: no desktop apps or Paseo service.
 - `mebaran` is the native Linux desktop profile; do not select it on WSL.
 
 ## Code Style Guidelines
