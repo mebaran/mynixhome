@@ -7,6 +7,11 @@
 
   home.packages = with pkgs; [dconf file-roller mpv];
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = ["com.mitchellh.ghostty.desktop"];
+  };
+
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
