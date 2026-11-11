@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mytools = {
-      url = "github:mebaran/mytools";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     paseo = {
       url = "github:getpaseo/paseo";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +44,6 @@
     stylix,
     noctalia,
     nix-ai-tools,
-    mytools,
     paseo,
     ...
   }: let
@@ -83,6 +77,7 @@
       };
       skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       dbxcli = pkgs.callPackage ./packages/dbxcli.nix {};
+      pgservicedburi = pkgs.callPackage ./packages/pgservicedburi.nix {};
       baseNvim = nixvim'.makeNixvimWithModule nixvimModule;
       allLangNvim = lib.foldl (n: l: n.extend l) baseNvim (lib.attrValues nvimLangs);
       nvimPackages =
@@ -94,7 +89,7 @@
           lib.nameValuePair "nvim-${name}" (baseNvim.extend value))
         nvimLangs;
     in {
-      packages.${system} = nvimPackages // skillSources // {inherit dbxcli;};
+      packages.${system} = nvimPackages // skillSources // {inherit dbxcli pgservicedburi;};
       checks.${system}.nvim = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
       devShells.${system} = lib.mapAttrs' (name: value:
         lib.nameValuePair name (pkgs.mkShell {buildInputs = [value];}))
@@ -149,7 +144,6 @@
       inherit system username homeDirectory;
       skillSources = import ./packages/skill-sources.nix {inherit pkgs;};
       aitools = nix-ai-tools.packages.${system};
-      mytools = mytools.packages.${system};
       paseo = paseo.packages.${system};
       noctaliaPackage = noctalia.packages.${system}.default;
     };

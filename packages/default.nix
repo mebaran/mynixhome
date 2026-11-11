@@ -2,7 +2,6 @@
   lib,
   pkgs,
   aitools,
-  mytools,
   ...
 }: let
   aipkgs = with aitools; [
@@ -13,6 +12,7 @@
   ];
   localPackages = lib.attrValues {
     dbxcli = pkgs.callPackage ./dbxcli.nix {};
+    pgservicedburi = pkgs.callPackage ./pgservicedburi.nix {};
   };
 in {
   # Packages that should be installed to the user profile.
@@ -57,6 +57,7 @@ in {
       gawk
       gnused
       imagemagick
+      ffmpeg
       openssl
       psutils
       rage
@@ -78,6 +79,7 @@ in {
       # JavaScript and TypeScript runtimes
       deno
       nodejs
+      playwright-test
 
       # cloud
       # awscli2 installed via home manager
@@ -86,9 +88,9 @@ in {
       render-cli
     ]
     ++ localPackages
-    ++ aipkgs
-    ++ lib.attrValues mytools;
+    ++ aipkgs;
   home.sessionVariables = {
     USQL_PAGER = "pspg";
+    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
   };
 }

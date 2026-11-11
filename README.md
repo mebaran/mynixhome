@@ -10,6 +10,15 @@
 - `mebaran@nixos-wsl` and `mbaran` use the shared CLI-only modules: no desktop apps or Paseo service.
 - `mebaran` is the native Linux desktop profile; do not select it on WSL.
 
+## Home Scripts
+- `scripts/pgservicedburi.py` replaces the former `mebaran/mytools` package; it is installed in every profile and available with `nix run .#pgservicedburi -- <service>`.
+- Check it with `python3 scripts/test_pgservicedburi.py "$(nix build .#pgservicedburi --no-link --print-out-paths)/bin/pgservicedburi"`.
+
+## Browser Recordings
+- The shared profile includes `ffmpeg`, the `playwright` CLI, and matching Nix-managed browsers via `PLAYWRIGHT_BROWSERS_PATH`.
+- Browser video recording uses Playwright's `recordVideo` context option; these packages do not configure a Claude MCP server or record the entire desktop.
+- Project-local Playwright versions must match the Nix-provided CLI (`playwright --version`) to use these browsers.
+
 ## Code Style Guidelines
 - **Language**: Nix expression language
 - **Formatting**: Use 2-space indentation, align attributes vertically

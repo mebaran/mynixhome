@@ -161,10 +161,13 @@
 
     nushell = {
       enable = true;
+      loadSessionVariables = true;
       plugins = with pkgs.nushellPlugins; [
         formats
-        gstat
-        polars
+        # shortcut: vendor missing system libs until the upstream fixes reach our nixpkgs pin.
+        # Polars fix: https://github.com/NixOS/nixpkgs/commit/8c57f3de20ac232fd07fed39bbcd6b05adf9f490
+        (gstat.overrideAttrs {dontCargoUseSystemLibs = true;})
+        (polars.overrideAttrs {dontCargoUseSystemLibs = true;})
         query
       ];
       extraConfig = ''
