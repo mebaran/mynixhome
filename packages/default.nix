@@ -26,10 +26,6 @@ in {
       gnutar
       zstd
 
-      # shared libs needed by nushell plugins (e.g. gstat)
-      libgit2
-      zstd 
-
       # utils
       yq-go # yaml processor https://github.com/mikefarah/yq
       poppler-utils
