@@ -20,10 +20,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ai-tools = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # No nixpkgs follows: use upstream's tested pin so packages (e.g. codex)
+    # come prebuilt from cache.numtide.com instead of building locally.
+    nix-ai-tools.url = "github:numtide/llm-agents.nix";
 
     nixvim = {
       url = "github:nix-community/nixvim";
