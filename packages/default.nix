@@ -6,6 +6,7 @@
 }: let
   aipkgs = with aitools; [
     # codex-acp
+    agy
     claude-code
     hunk
     skills
